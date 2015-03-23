@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/JSXTransformer.js"></script>
+  </head>
+  <body>
+    <script type="text/jsx">
+      var notepad = [
+        "hello",
+        "world"
+      ];
+
+      var NotesList = React.createClass({
+        render: function () {
+          var notes = this.props.notepad;
+
+          return (
+            <div className="note-list">
+              {
+                notes.map(function (note) {
+                  return (
+                    <div>{note}</div>
+                  );
+                })
+              }
+            </div>
+          );
+        }
+      });
+
+      React.render(
+        <NotesList notepad={notepad}/>,
+        document.body
+      );
+    </script>
+  </body>
+</html>

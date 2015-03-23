@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/JSXTransformer.js"></script>
+  </head>
+  <body>
+    <script type="text/jsx">
+      var notepad = [
+        "hello",
+        "world"
+      ];
+
+      var NotesList = React.createClass({
+        render: function () {
+          var notes = this.props.notepad;
+
+          return (
+            <div className="note-list">
+              {
+                notes.map(function (note) {
+                  return (
+                    <div className="note-summary">{note}</div>
+                  );
+                })
+              }
+            </div>
+          );
+        }
+      });
+
+      var Notepad = React.createClass({
+        onClick: function () {
+          notepad.push('hello again!');
+          onChange();
+        },
+        render: function () {
+          return  (
+            <div>
+              <NotesList notepad={notepad}/>
+              <button onClick={this.onClick}>Add note</button>
+            </div>
+          );
+        }
+      });
+
+      onChange = function () {
+        React.render(
+          <Notepad/>,
+          document.body
+        )
+      };
+
+      onChange();
+    </script>
+  </body>
+</html>
+
