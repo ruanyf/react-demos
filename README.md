@@ -1,8 +1,8 @@
 This is a collection of simple demos of React.js.
 
-These demos are purposely written in a simple and clear style. You will easily learn React.js the powerful library from them.
+These demos are purposely written in a simple and clear style. You will find no difficulty in following them to learn the powerful library.
 
-## Demo Index
+## Index
 
 1. Render JSX
 2. Use JavaScript in JSX
