@@ -2,15 +2,31 @@ This is a collection of simple demos of React.js.
 
 These demos are purposely written in a simple and clear style. You will easily learn React.js the powerful library from them.
 
+## Demo Index
+
+1. Render JSX
+2. Use JavaScript in JSX
+3. Use array in JSX
+4. Define a component
+5. this.props.children
+6. Finding a DOM node
+7. this.state
+8. Form
+9. Component Lifecycle
+10. Ajax
+11. Server-side rendering
+
+---
+
 ## How to use
 
-Copy the repo into your disk.
+First copy the repo into your disk.
 
 ```bash
 $ git clone git@github.com:ruanyf/react-demos.git
 ```
 
-Play with the source files under the repo's demo* directories.
+Then play with the source files under the repo's demo* directories.
 
 ```html
 <!DOCTYPE html>
