@@ -1,50 +1,161 @@
 This is a collection of simple demos of React.js.
 
-These demos are purposely written in a simple and clear style. You will easily learn how to use this powerful library from these demos.
+These demos are purposely written in a simple and clear style. You will easily learn React.js the powerful library from these demos.
 
-## Links
+## How to use
 
-- [Official website](http://facebook.github.io/react)
+Copy the repo into your disk.
 
-## Examples
+```bash
+$ git clone git@github.com:ruanyf/react-demos.git
+```
 
-We have several examples [on the website](http://facebook.github.io/react/). Here is the first one to get you started:
+Play with the source files under the repo's demo* directories.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/JSXTransformer.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/jsx">
+
+      // ** Our code goes here! **
+
+    </script>
+  </body>
+</html>
+```
+
+## Render JSX
+
+React.render() translates JSX into HTML.
+
+```js
+React.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('example')
+);
+```
+
+## Use JavaScript in JSX
+
+JSX takes angle brackets (beginning with &lt; ) as HTML section, curly brackets (beginning with { ) as JavaScript section.
+
+```js
+var names = ['Alice', 'Emily', 'Kate'];
+
+React.render(
+  <div>
+  {
+    names.map(function (name) {
+      return <div>Hello, {name}!</div>
+    })
+  }
+  </div>,
+  document.getElementById('example')
+);
+```
+
+## Use array in JSX
+
+JSX implicitly concats all members of an array into HTML.
+
+```js
+var arr = [
+  <h1>Hello world!</h1>,
+  <h2>React is awesome</h2>,
+];
+React.render(
+  <div>{arr}</div>,
+  document.getElementById('example')
+);
+```
+
+## Define a component
+
+React.createClass() defines a component which you could use in your pages.
 
 ```js
 var HelloMessage = React.createClass({
   render: function() {
-    return <div>Hello {this.props.name}</div>;
+    return <h1>Hello {this.props.name}</h1>;
   }
 });
 
 React.render(
   <HelloMessage name="John" />,
-  document.getElementById('container')
+  document.getElementById('example')
 );
 ```
 
-This example will render "Hello John" into a container on the page.
+## this.props.children
 
-You'll notice that we used an HTML-like syntax; [we call it JSX](http://facebook.github.io/react/docs/jsx-in-depth.html). JSX is not required to use React, but it makes code more readable, and writing it feels like writing HTML. A simple transform is included with React that allows converting JSX into native JavaScript for browsers to digest.
+we use `this.props.children` to access a component's children.
 
-## Installation
+```js
+var NotesList = React.createClass({
+  render: function() {
+    return (
+      <ol>
+      {
+        this.props.children.map(function (child) {
+          return <li>{child}</li>
+        })
+      }
+      </ol>
+    );
+  }
+});
 
-The fastest way to get started is to serve JavaScript from the CDN (also available on [cdnjs](https://cdnjs.com/libraries/react) and [jsdelivr](http://www.jsdelivr.com/#!react)):
+React.render(
+  <NotesList>
+    <span>hello</span>
+    <span>world</span>
+  </NotesList>,
+  document.body
+);
+```
+
+## Extras
+
+### Precompiling JSX
+
+Install the command-line tools.
+
+```bash
+$ npm install -g react-tools
+```
+
+Precompile your JSX files(.jsx) into JavaScript(.js).
+
+```bash
+$ jsx -x src/ build/
+```
+
+Put the compiled JS files into HTML.
 
 ```html
-<!-- The core React library -->
-<script src="http://fb.me/react-0.13.1.js"></script>
-<!-- In-browser JSX transformer, remove when pre-compiling JSX. -->
-<script src="http://fb.me/JSXTransformer-0.13.1.js"></script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React!</title>
+    <script src="build/react.js"></script>
+    <!-- No need for JSXTransformer! -->
+  </head>
+  <body>
+    <div id="example"></div>
+    <script src="build/helloworld.js"></script>
+  </body>
+</html>
 ```
 
-We've also built a [starter kit](http://facebook.github.io/react/downloads/react-0.13.1.zip) which might be useful if this is your first time using React. It includes a webpage with an example of using React with live code.
+## Useful links
 
-If you'd like to use [bower](http://bower.io), it's as easy as:
-
-```sh
-bower install --save react
-```
+- [React's Official site](http://facebook.github.io/react)
 
 ## License
 
