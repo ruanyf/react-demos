@@ -5,40 +5,30 @@
     <script src="../build/JSXTransformer.js"></script>
   </head>
   <body>
+    <div id="example"></div>
     <script type="text/jsx">
-      var Hello = React.createClass({
-        getInitialState: function () {
-          return {
-            opacity: 1.0
-          };
-        },
+var LikeButton = React.createClass({
+  getInitialState: function() {
+    return {liked: false};
+  },
+  handleClick: function(event) {
+    this.setState({liked: !this.state.liked});
+  },
+  render: function() {
+    var text = this.state.liked ? 'like' : 'haven\'t liked';
+    return (
+      <p onClick={this.handleClick}>
+        You {text} this. Click to toggle.
+      </p>
+    );
+  }
+});
 
-        componentDidMount: function () {
-          this.timer = setInterval(function () {
-            var opacity = this.state.opacity;
-            opacity -= .05;
-            if (opacity < 0.1) {
-              opacity = 1.0;
-            }
-            this.setState({
-              opacity: opacity
-            });
-          }.bind(this), 100);
-        },
-
-        render: function () {
-          return (
-            <div style={{opacity: this.state.opacity}}>
-              Hello {this.props.name}
-            </div>
-          );
-        }
-      });
-
-      React.render(
-        <Hello name="world"/>,
-        document.body
-      );
+React.render(
+  <LikeButton />,
+  document.getElementById('example')
+);
     </script>
   </body>
 </html>
+

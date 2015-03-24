@@ -30,7 +30,7 @@ Play with the source files under the repo's demo* directories.
 </html>
 ```
 
-## Render JSX
+## Demo1: Render JSX
 
 React.render() translates JSX into HTML.
 
@@ -41,7 +41,7 @@ React.render(
 );
 ```
 
-## Use JavaScript in JSX
+## Demo2: Use JavaScript in JSX
 
 JSX takes angle brackets (beginning with &lt; ) as HTML section, curly brackets (beginning with { ) as JavaScript section.
 
@@ -60,7 +60,7 @@ React.render(
 );
 ```
 
-## Use array in JSX
+## Demo3: Use array in JSX
 
 JSX implicitly concats all members of an array into HTML.
 
@@ -75,7 +75,7 @@ React.render(
 );
 ```
 
-## Define a component
+## Demo4: Define a component
 
 React.createClass() defines a component which you could use in your pages.
 
@@ -92,7 +92,7 @@ React.render(
 );
 ```
 
-## this.props.children
+## Demo5: this.props.children
 
 React uses `this.props.children` to access a component's children.
 
@@ -120,7 +120,7 @@ React.render(
 );
 ```
 
-## Finding a DOM node
+## Demo6: Finding a DOM node
 
 React uses React.findDOMNode() to find a DOM node.
 
@@ -145,7 +145,7 @@ React.render(
 );
 ```
 
-## this.state
+## Demo7: this.state
 
 React thinks of component as state machines, and uses `this.state` to hold component's state, `this.setState()` to update `this.state` and re-render the component.
 
@@ -173,9 +173,9 @@ React.render(
 );
 ```
 
-## Form
+## Demo8: Form
 
-The `value` property of Form components, such as <input>, <textarea>, and <option>, is unaffected by any user input. If you wanted to update the value in response to user input, you could use the onChange event.
+The `value` property of Form components, such as &lt;input$gt;, &lt;textarea$gt;, and &lt;option$gt;, is unaffected by any user input. If you wanted to update the value in response to user input, you could use the onChange event.
 
 ```js
 var Input = React.createClass({
@@ -199,7 +199,7 @@ var Input = React.createClass({
 React.render(<Input/>, document.body);
 ```
 
-## Component Lifecycle
+## Demo9: Component Lifecycle
 
 Components have three main parts of their lifecycle: Mounting, Updating and Unmounting. React provides hooks into these lifecycle part. `will` methods are called right before something happens, and `did` methods which are called right after something happens.
 
@@ -239,7 +239,7 @@ React.render(
 );
 ```
 
-## Ajax
+## Demo10: Ajax
 
 Fetch data in componentDidMount. When the response arrives, store the data in state, triggering a render to update your UI.
 
@@ -284,13 +284,15 @@ React.render(
 
 ### Precompiling JSX
 
-Install the command-line tools.
+All above demos don't use JSX compilation for clarity. In production environment, ensure to precompile JSX files before putting them online.
+
+First, install the command-line tools.
 
 ```bash
 $ npm install -g react-tools
 ```
 
-Precompile your JSX files(.jsx) into JavaScript(.js).
+Then precompile your JSX files(.jsx) into JavaScript(.js).
 
 ```bash
 $ jsx -x src/ build/
@@ -317,6 +319,9 @@ Put the compiled JS files into HTML.
 
 - [React's official site](http://facebook.github.io/react)
 - [React's official examples](https://github.com/facebook/react/tree/master/examples)
+- [React JS Tutorial and Guide to the Gotchas](https://zapier.com/engineering/react-js-tutorial-guide-gotchas/), by Justin Deal
+- [React Primer](https://github.com/BinaryMuse/react-primer), by Binary Muse
+- [jQuery versus React.js thinking](http://blog.zigomir.com/react.js/jquery/2015/01/11/jquery-versus-react-thinking.html), by zigomir
 
 ## License
 

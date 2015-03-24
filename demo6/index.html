@@ -5,26 +5,26 @@
     <script src="../build/JSXTransformer.js"></script>
   </head>
   <body>
+    <div id="example"></div>
     <script type="text/jsx">
-      var Input = React.createClass({
-        getInitialState: function() {
-          return {value: 'Hello!'};
-        },
-        handleChange: function(event) {
-          this.setState({value: event.target.value});
-        },
-        render: function () {
-          var value = this.state.value;
-          return (
-            <div>
-              <input type="text" value={value} onChange={this.handleChange} />
-              <p>{value}</p>
-            </div>
-          );
-        }
-      });
+var MyComponent = React.createClass({
+  handleClick: function() {
+    React.findDOMNode(this.refs.myTextInput).focus();
+  },
+  render: function() {
+    return (
+      <div>
+        <input type="text" ref="myTextInput" />
+        <input type="button" value="Focus the text input" onClick={this.handleClick} />
+      </div>
+    );
+  }
+});
 
-      React.render(<Input/>, document.body);
+React.render(
+  <MyComponent />,
+  document.getElementById('example')
+);
     </script>
   </body>
 </html>

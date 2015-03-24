@@ -1,0 +1,19 @@
+{
+  "name": "react-server",
+  "version": "1.0.0",
+  "description": "an example of react.js in server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ruanyf",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "~9.0.3",
+    "literalify": "~0.4.0",
+    "react": "~0.13.1"
+  },
+  "devDependencies": {
+    "react-tools": "~0.13.1"
+  }
+}

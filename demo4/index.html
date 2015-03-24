@@ -5,29 +5,18 @@
     <script src="../build/JSXTransformer.js"></script>
   </head>
   <body>
+    <div id="example"></div>
     <script type="text/jsx">
-      var NotesList = React.createClass({
+      var HelloMessage = React.createClass({
         render: function() {
-          return (
-            <ol>
-              {
-                this.props.children.map(function (child) {
-                  return <li>{child}</li>
-                })
-              }
-            </ol>
-          );
+          return <h1>Hello {this.props.name}</h1>;
         }
       });
 
       React.render(
-        <NotesList>
-          <span>hello</span>
-          <span>world</span>
-        </NotesList>,
-        document.body
+        <HelloMessage name="John" />,
+        document.getElementById('example')
       );
     </script>
   </body>
 </html>
-
