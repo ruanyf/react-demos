@@ -26,10 +26,6 @@
           }.bind(this), 100);
         },
 
-        componentWillUnmount: function () {
-          clearInterval(this.timer);
-        },
-
         render: function () {
           return (
             <div style={{opacity: this.state.opacity}}>
