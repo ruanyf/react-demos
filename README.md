@@ -1,6 +1,6 @@
 This is a collection of simple demos of React.js.
 
-These demos are purposely written in a simple and clear style. You will easily learn React.js the powerful library from these demos.
+These demos are purposely written in a simple and clear style. You will easily learn React.js the powerful library from them.
 
 ## How to use
 
@@ -30,7 +30,7 @@ Play with the source files under the repo's demo* directories.
 </html>
 ```
 
-## Demo1: Render JSX
+## Demo01: Render JSX
 
 React.render() translates JSX into HTML.
 
@@ -41,7 +41,7 @@ React.render(
 );
 ```
 
-## Demo2: Use JavaScript in JSX
+## Demo02: Use JavaScript in JSX
 
 JSX takes angle brackets (beginning with &lt; ) as HTML section, curly brackets (beginning with { ) as JavaScript section.
 
@@ -60,7 +60,7 @@ React.render(
 );
 ```
 
-## Demo3: Use array in JSX
+## Demo03: Use array in JSX
 
 JSX implicitly concats all members of an array into HTML.
 
@@ -75,7 +75,7 @@ React.render(
 );
 ```
 
-## Demo4: Define a component
+## Demo04: Define a component
 
 React.createClass() defines a component which you could use in your pages.
 
@@ -92,7 +92,7 @@ React.render(
 );
 ```
 
-## Demo5: this.props.children
+## Demo05: this.props.children
 
 React uses `this.props.children` to access a component's children.
 
@@ -145,7 +145,7 @@ React.render(
 );
 ```
 
-## Demo7: this.state
+## Demo07: this.state
 
 React thinks of component as state machines, and uses `this.state` to hold component's state, `this.setState()` to update `this.state` and re-render the component.
 
@@ -173,7 +173,7 @@ React.render(
 );
 ```
 
-## Demo8: Form
+## Demo08: Form
 
 The `value` property of Form components, such as &lt;input$gt;, &lt;textarea$gt;, and &lt;option$gt;, is unaffected by any user input. If you wanted to update the value in response to user input, you could use the onChange event.
 
@@ -199,7 +199,7 @@ var Input = React.createClass({
 React.render(<Input/>, document.body);
 ```
 
-## Demo9: Component Lifecycle
+## Demo09: Component Lifecycle
 
 Components have three main parts of their lifecycle: Mounting, Updating and Unmounting. React provides hooks into these lifecycle part. `will` methods are called right before something happens, and `did` methods which are called right after something happens.
 
@@ -279,6 +279,10 @@ React.render(
   document.body
 );
 ```
+
+## Demo11: Server-side rendering
+
+Please visit [here](https://github.com/mhart/react-server-example).
 
 ## Extras
 
