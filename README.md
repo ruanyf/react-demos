@@ -4,17 +4,17 @@ These demos are purposely written in a simple and clear style. You will find no 
 
 ## Index
 
-1. [Render JSX](#demo01-render-jsx)
-2. [Use JavaScript in JSX](#demo02-use-javascript-in-jsx)
-3. [Use array in JSX](#demo03-use-array-in-jsx)
-4. [Define a component](#demo04-define-a-component)
-5. [this.props.children](#demo05-thispropschildren)
-6. [Finding a DOM node](#demo6-finding-a-dom-node)
-7. [this.state](#demo07-thisstate)
-8. [Form](#demo08-form)
-9. [Component Lifecycle](#demo09-component-lifecycle)
-10. [Ajax](#demo10-ajax)
-11. [Server-side rendering](#demo11-server-side-rendering)
+1. [Render JSX](#demo01-render-jsx-source)
+2. [Use JavaScript in JSX](#demo02-use-javascript-in-jsx-source)
+3. [Use array in JSX](#demo03-use-array-in-jsx-source)
+4. [Define a component](#demo04-define-a-component-source)
+5. [this.props.children](#demo05-thispropschildren-source)
+6. [Finding a DOM node](#demo6-finding-a-dom-node-source)
+7. [this.state](#demo07-thisstate-source)
+8. [Form](#demo08-form-source)
+9. [Component Lifecycle](#demo09-component-lifecycle-source)
+10. [Ajax](#demo10-ajax-source)
+11. [Server-side rendering](#demo11-server-side-rendering-source)
 
 ---
 
