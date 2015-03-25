@@ -48,7 +48,7 @@ Then play with the source files under the repo's demo* directories.
 
 ## Demo01: Render JSX
 
-React.render() translates JSX into HTML.
+The template syntax in React is called [JSX](http://facebook.github.io/react/docs/displaying-data.html#jsx-syntax). It is allowed in JSX to put HTML tags directly into JavaScript codes. React.render() is the method which translates JSX into HTML, and renders it into the specified DOM node.
 
 ```js
 React.render(
@@ -57,9 +57,11 @@ React.render(
 );
 ```
 
+Please be minded that you have to use `<script type="text/jsx">` to indicate JSX codes, and include `JSXTransformer.js` to actually perform the transformation in the browser.
+
 ## Demo02: Use JavaScript in JSX
 
-JSX takes angle brackets (beginning with &lt; ) as HTML section, curly brackets (beginning with { ) as JavaScript section.
+You could use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets ({) as the beginning of JavaScript syntax.
 
 ```js
 var names = ['Alice', 'Emily', 'Kate'];
@@ -78,7 +80,7 @@ React.render(
 
 ## Demo03: Use array in JSX
 
-JSX implicitly concats all members of an array into HTML.
+If a JavaScript variable is array, JSX will implicitly concat all members of the array.
 
 ```js
 var arr = [
@@ -93,7 +95,7 @@ React.render(
 
 ## Demo04: Define a component
 
-React.createClass() defines a component which you could use in your pages.
+React.createClass() creates a component class, which implements a render method to return an component instance of the class. You don't need to call `new` on the class in order to get an instance, just use it as a normal HTML tag.
 
 ```js
 var HelloMessage = React.createClass({
@@ -107,6 +109,8 @@ React.render(
   document.getElementById('example')
 );
 ```
+
+Components can have attributes, and you can use `this.props.[attribute]` to access them, just like `this.props.name` of `<HelloMessage name="John" />` is John.
 
 ## Demo05: this.props.children
 
