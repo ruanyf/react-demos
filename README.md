@@ -4,12 +4,12 @@ These demos are purposely written in a simple and clear style. You will find no 
 
 ## Index
 
-1. Render JSX
-2. Use JavaScript in JSX
-3. Use array in JSX
-4. Define a component
-5. this.props.children
-6. Finding a DOM node
+1. [Render JSX](#demo01-render-jsx)
+2. [Use JavaScript in JSX](#demo02-use-javascript-in-jsx)
+3. [Use array in JSX](#demo03-use-array-in-jsx)
+4. [Define a component](#demo04-define-a-component)
+5. [this.props.children](#demo05-thispropschildren)
+6. [Finding a DOM node](#demo6-finding-a-dom-node)
 7. this.state
 8. Form
 9. Component Lifecycle
@@ -61,7 +61,7 @@ Please be minded that you have to use `<script type="text/jsx">` to indicate JSX
 
 ## Demo02: Use JavaScript in JSX
 
-You could use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets ({) as the beginning of JavaScript syntax.
+You could also use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets ({) as the beginning of JavaScript syntax.
 
 ```js
 var names = ['Alice', 'Emily', 'Kate'];
@@ -114,7 +114,7 @@ Components can have attributes, and you can use `this.props.[attribute]` to acce
 
 ## Demo05: this.props.children
 
-React uses `this.props.children` to access a component's children.
+React uses `this.props.children` to access a component's children nodes.
 
 ```js
 var NotesList = React.createClass({
@@ -140,9 +140,11 @@ React.render(
 );
 ```
 
+Please be minded that only if the component has more than one child node, you could take `this.props.children` as an array, otherwise `this.props.children.map` throws a TypeError.
+
 ## Demo6: Finding a DOM node
 
-React uses React.findDOMNode() to find a DOM node.
+Sometimes you need to reference a DOM node in a component. React gives you React.findDOMNode() to find it.
 
 ```js
 var MyComponent = React.createClass({
@@ -165,9 +167,11 @@ React.render(
 );
 ```
 
+The desired DOM node should have a `ref` attribute, and `React.findDOMNode(this.refs.[refName])` would return the corresponding DOM node. Please be minded that you could do that only after this component has been mounted into the DOM, otherwise you get `null`.
+
 ## Demo07: this.state
 
-React thinks of component as state machines, and uses `this.state` to hold component's state, `this.setState()` to update `this.state` and re-render the component.
+React thinks of component as state machines, and uses `this.state` to hold component's state, `getInitialState()` to initialize `this.state`, `this.setState()` to update `this.state` and re-render the component.
 
 ```js
 var LikeButton = React.createClass({
@@ -193,9 +197,13 @@ React.render(
 );
 ```
 
+You could use component attributes to register event handlers, just like `onClick`, `onKeyDown`, `onCopy`, etc. Official Document has all [supported events](http://facebook.github.io/react/docs/events.html#supported-events).
+
 ## Demo08: Form
 
-The `value` property of Form components, such as &lt;input$gt;, &lt;textarea$gt;, and &lt;option$gt;, is unaffected by any user input. If you wanted to update the value in response to user input, you could use the onChange event.
+According to React's design philosophy, `this.state` describes the state of component and is mutated via user interactions, and `this.props` describes the properties of component and is stable adn immutable.
+
+Since that, the `value` attribute of Form components, such as &lt;input$gt;, &lt;textarea$gt;, and &lt;option$gt;, is unaffected by any user input. If you wanted to access or update the value in response to user input, you could use the onChange event.
 
 ```js
 var Input = React.createClass({
@@ -219,9 +227,11 @@ var Input = React.createClass({
 React.render(<Input/>, document.body);
 ```
 
+More information on [officail document](http://facebook.github.io/react/docs/forms.html).
+
 ## Demo09: Component Lifecycle
 
-Components have three main parts of their lifecycle: Mounting, Updating and Unmounting. React provides hooks into these lifecycle part. `will` methods are called right before something happens, and `did` methods which are called right after something happens.
+Components have three main parts of their lifecycle: Mounting, Updating and Unmounting. React provides hooks into these lifecycle part. `will` methods are called right before something happens, and `did` methods which are called right after something happens. 
 
 ```js
 var Hello = React.createClass({
