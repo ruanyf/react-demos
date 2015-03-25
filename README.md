@@ -320,7 +320,7 @@ React.render(
 );
 ```
 
-## Demo11: Server-side rendering ([source](https://github.com/ruanyf/react-demos/blob/master/demo11/index.html))
+## Demo11: Server-side rendering ([source](https://github.com/ruanyf/react-demos/tree/master/demo11/src))
 
 This demo is copied from [github.com/mhart/react-server-example](https://github.com/mhart/react-server-example), but I rewrote it with JSX syntax.
 
