@@ -10,11 +10,11 @@ These demos are purposely written in a simple and clear style. You will find no 
 4. [Define a component](#demo04-define-a-component)
 5. [this.props.children](#demo05-thispropschildren)
 6. [Finding a DOM node](#demo6-finding-a-dom-node)
-7. this.state
-8. Form
-9. Component Lifecycle
-10. Ajax
-11. Server-side rendering
+7. [this.state](#demo07-thisstate)
+8. [Form](#demo08-form)
+9. [Component Lifecycle](#demo09-component-lifecycle)
+10. [Ajax](#demo10-ajax)
+11. [Server-side rendering](#demo11-server-side-rendering)
 
 ---
 
@@ -46,7 +46,7 @@ Then play with the source files under the repo's demo* directories.
 </html>
 ```
 
-## Demo01: Render JSX
+## [Demo01: Render JSX](https://github.com/ruanyf/react-demos/blob/master/demo01/index.html)
 
 The template syntax in React is called [JSX](http://facebook.github.io/react/docs/displaying-data.html#jsx-syntax). It is allowed in JSX to put HTML tags directly into JavaScript codes. React.render() is the method which translates JSX into HTML, and renders it into the specified DOM node.
 
@@ -171,7 +171,7 @@ The desired DOM node should have a `ref` attribute, and `React.findDOMNode(this.
 
 ## Demo07: this.state
 
-React thinks of component as state machines, and uses `this.state` to hold component's state, `getInitialState()` to initialize `this.state`, `this.setState()` to update `this.state` and re-render the component.
+React thinks of component as state machines, and uses `this.state` to hold component's state, `getInitialState()` to initialize `this.state`(invoked before a component is mounted), `this.setState()` to update `this.state` and re-render the component.
 
 ```js
 var LikeButton = React.createClass({
@@ -203,7 +203,7 @@ You could use component attributes to register event handlers, just like `onClic
 
 According to React's design philosophy, `this.state` describes the state of component and is mutated via user interactions, and `this.props` describes the properties of component and is stable adn immutable.
 
-Since that, the `value` attribute of Form components, such as &lt;input$gt;, &lt;textarea$gt;, and &lt;option$gt;, is unaffected by any user input. If you wanted to access or update the value in response to user input, you could use the onChange event.
+Since that, the `value` attribute of Form components, such as &lt;input&gt;, &lt;textarea&gt;, and &lt;option&gt;, is unaffected by any user input. If you wanted to access or update the value in response to user input, you could use the onChange event.
 
 ```js
 var Input = React.createClass({
@@ -231,7 +231,7 @@ More information on [officail document](http://facebook.github.io/react/docs/for
 
 ## Demo09: Component Lifecycle
 
-Components have three main parts of their lifecycle: Mounting, Updating and Unmounting. React provides hooks into these lifecycle part. `will` methods are called right before something happens, and `did` methods which are called right after something happens. 
+Components have three main parts of [their lifecycle](https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle): Mounting(being inserted into the DOM), Updating(being re-rendered) and Unmounting(being removed from the DOM). React provides hooks into these lifecycle part. `will` methods are called right before something happens, and `did` methods which are called right after something happens.
 
 ```js
 var Hello = React.createClass({
@@ -269,9 +269,19 @@ React.render(
 );
 ```
 
+The following is [a whole list of lifecycle methods](http://facebook.github.io/react/docs/component-specs.html#lifecycle-methods).
+
+- componentWillMount()
+- componentDidMount()
+- componentWillUpdate(object nextProps, object nextState)
+- componentDidUpdate(object prevProps, object prevState)
+- componentWillUnmount()
+- componentWillReceiveProps(object nextProps): invoked when a mounted component receives new props.
+- shouldComponentUpdate(object nextProps, object nextState): invoked when a component decides whether any changes warrant an update to the DOM.
+
 ## Demo10: Ajax
 
-Fetch data in componentDidMount. When the response arrives, store the data in state, triggering a render to update your UI.
+How to get the data of a component from a server or an API provider? The answer is using Ajax to fetch data in the event handler of `componentDidMount`. When the server response arrives, store the data with `this.setState()` to trigger a re-render of your UI.
 
 ```js
 var UserGist = React.createClass({
@@ -312,7 +322,18 @@ React.render(
 
 ## Demo11: Server-side rendering
 
-Please visit [here](https://github.com/mhart/react-server-example).
+This demo is copied from [github.com/mhart/react-server-example](https://github.com/mhart/react-server-example), but I rewrote it with JSX syntax.
+
+```bash
+# install the dependencies in demo11 directory
+$ npm install
+
+# translate all jsx file in src subdirectory to js file
+$ jsx src/ .
+
+# launch http server
+$ node server.js
+```
 
 ## Extras
 
