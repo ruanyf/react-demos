@@ -2,22 +2,6 @@ This is a collection of simple demos of React.js.
 
 These demos are purposely written in a simple and clear style. You will find no difficulty in following them to learn the powerful library.
 
-## Index
-
-1. [Render JSX](#demo01-render-jsx-source)
-2. [Use JavaScript in JSX](#demo02-use-javascript-in-jsx-source)
-3. [Use array in JSX](#demo03-use-array-in-jsx-source)
-4. [Define a component](#demo04-define-a-component-source)
-5. [this.props.children](#demo05-thispropschildren-source)
-6. [Finding a DOM node](#demo6-finding-a-dom-node-source)
-7. [this.state](#demo07-thisstate-source)
-8. [Form](#demo08-form-source)
-9. [Component Lifecycle](#demo09-component-lifecycle-source)
-10. [Ajax](#demo10-ajax-source)
-11. [Server-side rendering](#demo11-server-side-rendering-source)
-
----
-
 ## How to use
 
 First copy the repo into your disk.
@@ -27,6 +11,8 @@ $ git clone git@github.com:ruanyf/react-demos.git
 ```
 
 Then play with the source files under the repo's demo* directories.
+
+## HTML Template
 
 ```html
 <!DOCTYPE html>
@@ -45,6 +31,22 @@ Then play with the source files under the repo's demo* directories.
   </body>
 </html>
 ```
+
+## Index
+
+1. [Render JSX](#demo01-render-jsx-source)
+2. [Use JavaScript in JSX](#demo02-use-javascript-in-jsx-source)
+3. [Use array in JSX](#demo03-use-array-in-jsx-source)
+4. [Define a component](#demo04-define-a-component-source)
+5. [this.props.children](#demo05-thispropschildren-source)
+6. [Finding a DOM node](#demo6-finding-a-dom-node-source)
+7. [this.state](#demo07-thisstate-source)
+8. [Form](#demo08-form-source)
+9. [Component Lifecycle](#demo09-component-lifecycle-source)
+10. [Ajax](#demo10-ajax-source)
+11. [Server-side rendering](#demo11-server-side-rendering-source)
+
+---
 
 ## Demo01: Render JSX ([source](https://github.com/ruanyf/react-demos/blob/master/demo01/index.html))
 
