@@ -229,7 +229,7 @@ var Input = React.createClass({
 React.render(<Input/>, document.body);
 ```
 
-More information on [officail document](http://facebook.github.io/react/docs/forms.html).
+More information on [official document](http://facebook.github.io/react/docs/forms.html).
 
 ## Demo09: Component Lifecycle ([source](https://github.com/ruanyf/react-demos/blob/master/demo09/index.html))
 
