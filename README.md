@@ -203,7 +203,7 @@ You could use component attributes to register event handlers, just like `onClic
 
 ## Demo08: Form ([source](https://github.com/ruanyf/react-demos/blob/master/demo08/index.html))
 
-According to React's design philosophy, `this.state` describes the state of component and is mutated via user interactions, and `this.props` describes the properties of component and is stable adn immutable.
+According to React's design philosophy, `this.state` describes the state of component and is mutated via user interactions, and `this.props` describes the properties of component and is stable and immutable.
 
 Since that, the `value` attribute of Form components, such as &lt;input&gt;, &lt;textarea&gt;, and &lt;option&gt;, is unaffected by any user input. If you wanted to access or update the value in response to user input, you could use the onChange event.
 
