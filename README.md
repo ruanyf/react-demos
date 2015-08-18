@@ -50,7 +50,7 @@ Then play with the source files under the repo's demo* directories.
 
 ## Demo01: Render JSX ([source](https://github.com/ruanyf/react-demos/blob/master/demo01/index.html))
 
-The template syntax in React is called [JSX](http://facebook.github.io/react/docs/displaying-data.html#jsx-syntax). It is allowed in JSX to put HTML tags directly into JavaScript codes. React.render() is the method which translates JSX into HTML, and renders it into the specified DOM node.
+The template syntax in React is called [JSX](http://facebook.github.io/react/docs/displaying-data.html#jsx-syntax). It is allowed in JSX to put HTML tags directly into JavaScript codes. `React.render()` is the method which translates JSX into HTML, and renders it into the specified DOM node.
 
 ```js
 React.render(
@@ -59,7 +59,9 @@ React.render(
 );
 ```
 
-Please be minded that you have to use `<script type="text/babel">` to indicate JSX codes, and include `browser.min.js` to actually perform the transformation in the browser. `browser.min.js` is a browser version of Babel which could be get inside a babel-core npm release.
+Attention, you have to use `<script type="text/babel">` to indicate JSX codes, and include `browser.min.js`, which is a [browser version](https://babeljs.io/docs/usage/browser/) of Babel which could be get inside a [babel-core](https://www.npmjs.com/package/babel-core) npm release, to actually perform the transformation in the browser.
+
+Before v0.14, React use `JSTransform.js` to translate `<script type="text/jsx">`. It has been deprecated ([more info](https://facebook.github.io/react/blog/2015/06/12/deprecating-jstransform-and-react-tools.html)).
 
 ## Demo02: Use JavaScript in JSX ([source](https://github.com/ruanyf/react-demos/blob/master/demo02/index.html))
 
