@@ -23,7 +23,7 @@ http.createServer(function(req, res) {
         <script dangerouslySetInnerHTML={{__html:
         'var APP_PROPS = ' + JSON.stringify(props) + ';'
         }}/>
-        <script src="//fb.me/react-0.13.1.min.js"/>
+        <script src="//fb.me/react-0.13.3.min.js"/>
         <script src="/bundle.js"/>
       </body>
     );

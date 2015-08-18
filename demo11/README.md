@@ -5,7 +5,7 @@ This demo is copied from [github.com/mhart/react-server-example](https://github.
 $ npm install
 
 # translate all jsx file in src subdirectory to js file
-$ jsx src/ .
+$ npm run build
 
 # launch http server
 $ node server.js

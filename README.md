@@ -19,11 +19,11 @@ Then play with the source files under the repo's demo* directories.
 <html>
   <head>
     <script src="../build/react.js"></script>
-    <script src="../build/JSXTransformer.js"></script>
+    <script src="../build/browser.min.js"></script>
   </head>
   <body>
     <div id="example"></div>
-    <script type="text/jsx">
+    <script type="text/babel">
 
       // ** Our code goes here! **
 
@@ -59,7 +59,7 @@ React.render(
 );
 ```
 
-Please be minded that you have to use `<script type="text/jsx">` to indicate JSX codes, and include `JSXTransformer.js` to actually perform the transformation in the browser.
+Please be minded that you have to use `<script type="text/babel">` to indicate JSX codes, and include `browser.min.js` to actually perform the transformation in the browser. `browser.min.js` is a browser version of Babel which could be get inside a babel-core npm release.
 
 ## Demo02: Use JavaScript in JSX ([source](https://github.com/ruanyf/react-demos/blob/master/demo02/index.html))
 
