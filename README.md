@@ -2,7 +2,7 @@ This is a collection of simple demos of React.js.
 
 These demos are purposely written in a simple and clear style. You will find no difficulty in following them to learn the powerful library.
 
-## Other Related Demos
+## Related Demos
 
 - [Webpack Demos](https://github.com/ruanyf/webpack-demos)
 - [Flux for stupid people Demo](https://github.com/ruanyf/flux-for-stupid-people-demo)
