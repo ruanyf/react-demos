@@ -5,26 +5,30 @@
     <script src="../build/browser.min.js"></script>
   </head>
   <body>
+    <div id="example"></div>
     <script type="text/babel">
-      var Input = React.createClass({
-        getInitialState: function() {
-          return {value: 'Hello!'};
-        },
-        handleChange: function(event) {
-          this.setState({value: event.target.value});
-        },
-        render: function () {
-          var value = this.state.value;
-          return (
-            <div>
-              <input type="text" value={value} onChange={this.handleChange} />
-              <p>{value}</p>
-            </div>
-          );
-        }
-      });
+var LikeButton = React.createClass({
+  getInitialState: function() {
+    return {liked: false};
+  },
+  handleClick: function(event) {
+    this.setState({liked: !this.state.liked});
+  },
+  render: function() {
+    var text = this.state.liked ? 'like' : 'haven\'t liked';
+    return (
+      <p onClick={this.handleClick}>
+        You {text} this. Click to toggle.
+      </p>
+    );
+  }
+});
 
-      React.render(<Input/>, document.body);
+React.render(
+  <LikeButton />,
+  document.getElementById('example')
+);
     </script>
   </body>
 </html>
+

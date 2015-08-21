@@ -3,44 +3,42 @@
   <head>
     <script src="../build/react.js"></script>
     <script src="../build/browser.min.js"></script>
-    <script src="../build/jquery.min.js"></script>
   </head>
   <body>
     <script type="text/babel">
-var UserGist = React.createClass({
-  getInitialState: function() {
-    return {
-      username: '',
-      lastGistUrl: ''
-    };
-  },
+      var Hello = React.createClass({
+        getInitialState: function () {
+          return {
+            opacity: 1.0
+          };
+        },
 
-  componentDidMount: function() {
-    $.get(this.props.source, function(result) {
-      var lastGist = result[0];
-      if (this.isMounted()) {
-        this.setState({
-          username: lastGist.owner.login,
-          lastGistUrl: lastGist.html_url
-        });
-      }
-    }.bind(this));
-  },
+        componentDidMount: function () {
+          this.timer = setInterval(function () {
+            var opacity = this.state.opacity;
+            opacity -= .05;
+            if (opacity < 0.1) {
+              opacity = 1.0;
+            }
+            this.setState({
+              opacity: opacity
+            });
+          }.bind(this), 100);
+        },
 
-  render: function() {
-    return (
-      <div>
-        {this.state.username}'s last gist is
-         <a href={this.state.lastGistUrl}>here</a>.
-      </div>
-    );
-  }
-});
+        render: function () {
+          return (
+            <div style={{opacity: this.state.opacity}}>
+              Hello {this.props.name}
+            </div>
+          );
+        }
+      });
 
-React.render(
-  <UserGist source="https://api.github.com/users/octocat/gists" />,
-  document.body
-);
+      React.render(
+        <Hello name="world"/>,
+        document.body
+      );
     </script>
   </body>
 </html>

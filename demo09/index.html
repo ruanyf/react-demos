@@ -6,39 +6,25 @@
   </head>
   <body>
     <script type="text/babel">
-      var Hello = React.createClass({
-        getInitialState: function () {
-          return {
-            opacity: 1.0
-          };
+      var Input = React.createClass({
+        getInitialState: function() {
+          return {value: 'Hello!'};
         },
-
-        componentDidMount: function () {
-          this.timer = setInterval(function () {
-            var opacity = this.state.opacity;
-            opacity -= .05;
-            if (opacity < 0.1) {
-              opacity = 1.0;
-            }
-            this.setState({
-              opacity: opacity
-            });
-          }.bind(this), 100);
+        handleChange: function(event) {
+          this.setState({value: event.target.value});
         },
-
         render: function () {
+          var value = this.state.value;
           return (
-            <div style={{opacity: this.state.opacity}}>
-              Hello {this.props.name}
+            <div>
+              <input type="text" value={value} onChange={this.handleChange} />
+              <p>{value}</p>
             </div>
           );
         }
       });
 
-      React.render(
-        <Hello name="world"/>,
-        document.body
-      );
+      React.render(<Input/>, document.body);
     </script>
   </body>
 </html>

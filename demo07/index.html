@@ -7,28 +7,24 @@
   <body>
     <div id="example"></div>
     <script type="text/babel">
-var LikeButton = React.createClass({
-  getInitialState: function() {
-    return {liked: false};
-  },
-  handleClick: function(event) {
-    this.setState({liked: !this.state.liked});
+var MyComponent = React.createClass({
+  handleClick: function() {
+    React.findDOMNode(this.refs.myTextInput).focus();
   },
   render: function() {
-    var text = this.state.liked ? 'like' : 'haven\'t liked';
     return (
-      <p onClick={this.handleClick}>
-        You {text} this. Click to toggle.
-      </p>
+      <div>
+        <input type="text" ref="myTextInput" />
+        <input type="button" value="Focus the text input" onClick={this.handleClick} />
+      </div>
     );
   }
 });
 
 React.render(
-  <LikeButton />,
+  <MyComponent />,
   document.getElementById('example')
 );
     </script>
   </body>
 </html>
-
