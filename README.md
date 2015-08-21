@@ -46,7 +46,7 @@ Then play with the source files under the repo's demo* directories.
 1. [Define a component](#demo04-define-a-component-source)
 1. [this.props.children](#demo05-thispropschildren-source)
 1. [PropTypes](#demo06-proptypes-source)
-1. [Finding a DOM node](#demo7-finding-a-dom-node-source)
+1. [Finding a DOM node](#demo07-finding-a-dom-node-source)
 1. [this.state](#demo08-thisstate-source)
 1. [Form](#demo09-form-source)
 1. [Component Lifecycle](#demo10-component-lifecycle-source)
