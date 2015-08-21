@@ -157,9 +157,9 @@ Please be minded that only if the component has more than one child node, you co
 
 Components have many specific attributes which are called ”props” in React and can be of any type.
 
-Sometimes you need a way to validate these props. You don't want users input  anything into your components.
+Sometimes you need a way to validate these props. You don't want users input anything into your components.
 
-React has a solution for this and it's called propTypes.
+React has a solution for this and it's called PropTypes.
 
 ```javascript
 var MyTitle = React.createClass({
@@ -173,7 +173,7 @@ var MyTitle = React.createClass({
 });
 ```
 
-The above component of `Mytitle` has a props of `title`.  PropTypes tells React that title is required and its value should be string.
+The above component of `Mytitle` has a props of `title`.  PropTypes tells React that the title is required and its value should be string.
 
 Now we give `Title` a number value.
 
