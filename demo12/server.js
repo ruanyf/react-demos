@@ -3,7 +3,8 @@
 var http = require('http'),
     browserify = require('browserify'),
     literalify = require('literalify'),
-    React = require('react');
+    React = require('react'),
+    ReactDOMServer = require('react-dom/server');
 
 var App = require('./app');
 
@@ -13,15 +14,15 @@ http.createServer(function (req, res) {
     var props = {
       items: ['Item 0', 'Item 1']
     };
-    var html = React.renderToStaticMarkup(React.createElement(
+    var html = ReactDOMServer.renderToStaticMarkup(React.createElement(
       'body',
       null,
-      React.createElement('div', { id: 'content', dangerouslySetInnerHTML: { __html: React.renderToString(React.createElement(App, { items: props.items }))
+      React.createElement('div', { id: 'content', dangerouslySetInnerHTML: { __html: ReactDOMServer.renderToString(React.createElement(App, { items: props.items }))
         } }),
-      ',',
       React.createElement('script', { dangerouslySetInnerHTML: { __html: 'var APP_PROPS = ' + JSON.stringify(props) + ';'
         } }),
-      React.createElement('script', { src: '//fb.me/react-0.13.3.min.js' }),
+      React.createElement('script', { src: '//fb.me/react-0.14.0.min.js' }),
+      React.createElement('script', { src: '//fb.me/react-dom-0.14.0.min.js' }),
       React.createElement('script', { src: '/bundle.js' })
     ));
     res.end(html);

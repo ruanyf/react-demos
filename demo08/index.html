@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
   </head>
   <body>
@@ -24,7 +25,7 @@ var LikeButton = React.createClass({
   }
 });
 
-React.render(
+ReactDOM.render(
   <LikeButton />,
   document.getElementById('example')
 );
