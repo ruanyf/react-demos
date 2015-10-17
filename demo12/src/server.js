@@ -35,7 +35,10 @@ http.createServer(function(req, res) {
     res.setHeader('Content-Type', 'text/javascript');
     browserify()
       .add('./browser.js')
-      .transform(literalify.configure({react: 'window.React'}))
+      .transform(literalify.configure({
+        'react': 'window.React',
+        'react-dom': 'window.ReactDOM',
+      }))
       .bundle()
       .pipe(res);
   } else {
