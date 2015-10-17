@@ -1,7 +1,8 @@
 var http = require('http'),
     browserify = require('browserify'),
     literalify = require('literalify'),
-    React = require('react');
+    React = require('react'),
+    ReactDOMServer = require('react-dom/server');
 
 var App = require('./app');
 
@@ -14,16 +15,17 @@ http.createServer(function(req, res) {
         'Item 1'
       ]
     };
-    var html = React.renderToStaticMarkup(
+    var html = ReactDOMServer.renderToStaticMarkup(
       <body>
         <div id="content" dangerouslySetInnerHTML={{__html:
-          React.renderToString(<App items={props.items}/>)
-        }} />,
+          ReactDOMServer.renderToString(<App items={props.items}/>)
+        }} />
 
         <script dangerouslySetInnerHTML={{__html:
         'var APP_PROPS = ' + JSON.stringify(props) + ';'
         }}/>
-        <script src="//fb.me/react-0.13.3.min.js"/>
+        <script src="//fb.me/react-0.14.0.min.js"/>
+        <script src="//fb.me/react-dom-0.14.0.min.js"/>
         <script src="/bundle.js"/>
       </body>
     );
@@ -36,7 +38,6 @@ http.createServer(function(req, res) {
       .transform(literalify.configure({react: 'window.React'}))
       .bundle()
       .pipe(res);
-
   } else {
     res.statusCode = 404;
     res.end();

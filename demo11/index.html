@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
     <script src="../build/jquery.min.js"></script>
   </head>
@@ -30,14 +31,13 @@ var UserGist = React.createClass({
   render: function() {
     return (
       <div>
-        {this.state.username}'s last gist is
-         <a href={this.state.lastGistUrl}>here</a>.
+        {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>.
       </div>
     );
   }
 });
 
-React.render(
+ReactDOM.render(
   <UserGist source="https://api.github.com/users/octocat/gists" />,
   document.body
 );

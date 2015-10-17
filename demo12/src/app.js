@@ -1,30 +1,32 @@
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
+export default class App extends React.Component{
 
-  getInitialState: function() {
-    return {
+  constructor(props) {
+    super(props);
+    this.render = this.render.bind(this);
+    this.state = {
       items: this.props.items,
       disabled: true
-    }
-  },
+    };
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.setState({
       disabled: false
     })
-  },
+  }
 
-  handleClick: function() {
+  handleClick() {
     this.setState({
       items: this.state.items.concat('Item ' + this.state.items.length)
     })
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div>
-        <button onClick={this.handleClick} disabled={this.state.disabled}>Add Item</button>
+        <button onClick={this.handleClick.bind(this)} disabled={this.state.disabled}>Add Item</button>
         <ul>
         {
           this.state.items.map(function(item) {
@@ -34,5 +36,5 @@ module.exports = React.createClass({
         </ul>
       </div>
     )
-  },
-});
+  }
+};

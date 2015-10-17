@@ -1,4 +1,5 @@
-var React = require('react');
-var App = require('./app');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app';
 
-React.render(<App items={window.APP_PROPS.items} />, document.getElementById('content'));
+ReactDOM.render(<App items={window.APP_PROPS.items} />, document.getElementById('content'));
