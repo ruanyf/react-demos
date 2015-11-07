@@ -10,7 +10,7 @@
     <script type="text/babel">
 var MyComponent = React.createClass({
   handleClick: function() {
-    ReactDOM.findDOMNode(this.refs.myTextInput).focus();
+    this.refs.myTextInput.focus();
   },
   render: function() {
     return (

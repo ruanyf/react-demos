@@ -217,12 +217,12 @@ ReactDOM.render(
 
 ## Demo07: Finding a DOM node ([source](https://github.com/ruanyf/react-demos/blob/master/demo07/index.html))
 
-Sometimes you need to reference a DOM node in a component. React gives you `ReactDOM.findDOMNode()` to find it.
+Sometimes you need to reference a DOM node in a component. React gives you the `ref` attribute to find it.
 
 ```js
 var MyComponent = React.createClass({
   handleClick: function() {
-    ReactDOM.findDOMNode(this.refs.myTextInput).focus();
+    this.refs.myTextInput.focus();
   },
   render: function() {
     return (
@@ -240,7 +240,7 @@ ReactDOM.render(
 );
 ```
 
-The desired DOM node should have a `ref` attribute, and `ReactDOM.findDOMNode(this.refs.[refName])` would return the corresponding DOM node. Please be minded that you could do that only after this component has been mounted into the DOM, otherwise you get `null`.
+The desired DOM node should have a `ref` attribute, and `this.refs.[refName]` would return the corresponding DOM node. Please be minded that you could do that only after this component has been mounted into the DOM, otherwise you get `null`.
 
 ## Demo08: this.state ([source](https://github.com/ruanyf/react-demos/blob/master/demo08/index.html))
 
