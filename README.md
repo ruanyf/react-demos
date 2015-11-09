@@ -5,7 +5,8 @@ These demos are purposely written in a simple and clear style. You will find no 
 ## Related Demos
 
 - [Webpack Demos](https://github.com/ruanyf/webpack-demos)
-- Flux Demos ([1](https://github.com/ruanyf/flux-for-stupid-people-demo), [2](https://github.com/ruanyf/flux-todomvc-demo))
+- [Flux Demo 01](https://github.com/ruanyf/flux-for-stupid-people-demo)
+- [Flux Demo 02](https://github.com/ruanyf/flux-todomvc-demo)
 
 ## How to use
 
