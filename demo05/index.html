@@ -12,8 +12,8 @@
           return (
             <ol>
               {
-                this.props.children.map(function (child) {
-                  return <li>{child}</li>
+                React.Children.map(this.props.children, function (child) {
+                  return <li>{child}</li>;
                 })
               }
             </ol>

@@ -127,14 +127,14 @@ Components can have attributes, and you can use `this.props.[attribute]` to acce
 
 React uses `this.props.children` to access a component's children nodes.
 
-```js
+```javascript
 var NotesList = React.createClass({
   render: function() {
     return (
       <ol>
       {
-        this.props.children.map(function (child) {
-          return <li>{child}</li>
+        React.Children.map(this.props.children, function (child) {
+          return <li>{child}</li>;
         })
       }
       </ol>
@@ -151,7 +151,9 @@ ReactDOM.render(
 );
 ```
 
-Please be minded that only if the component has more than one child node, you could take `this.props.children` as an array, otherwise `this.props.children.map` throws a TypeError.
+Please be minded that the value of `this.props.children` has three possibilities. If the component has no children node, the value is `undefined`; If single children node, an object; If multiple children nodes, an array. You should be careful to handle it.
+
+React gave us an utility [`React.Children`](https://facebook.github.io/react/docs/top-level-api.html#react.children) for dealing with the `this.props.children`'s opaque data structure. You could use `React.Children.map` to iterate `this.props.children` without worring its data type being `undefined` or `object`. Check [official document](https://facebook.github.io/react/docs/top-level-api.html#react.children) for more methods `React.Children` offers.
 
 ## Demo06: PropTypes ([source](https://github.com/ruanyf/react-demos/blob/master/demo06/index.html))
 
