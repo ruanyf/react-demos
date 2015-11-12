@@ -52,7 +52,8 @@ Then play with the source files under the repo's demo* directories.
 1. [Form](#demo09-form-source)
 1. [Component Lifecycle](#demo10-component-lifecycle-source)
 1. [Ajax](#demo11-ajax-source)
-1. [Server-side rendering](#demo12-server-side-rendering-source)
+1. [Display value from a Promise](#demo12-display-value-from-a-promise-source)
+1. [Server-side rendering](#demo13-server-side-rendering-source)
 
 ---
 
@@ -396,7 +397,65 @@ ReactDOM.render(
 );
 ```
 
-## Demo12: Server-side rendering ([source](https://github.com/ruanyf/react-demos/tree/master/demo11/src))
+## Demo12: Display value from a Promise ([source](https://github.com/ruanyf/react-demos/tree/master/demo12/src))
+
+This demo is inspired by Nat Pryce's article ["Higher Order React Components"](http://natpryce.com/articles/000814.html).
+
+If a React component's data is received asynchronously, we can use a Promise object as the component's property also, just as the following.
+
+```html
+ReactDOM.render(
+  <RepoList
+    promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}
+  />,
+  document.body
+);
+```
+
+The above code takes data from Github's API, and the RepoList component gets a Promise object as its property.
+
+Now, while the promise is pending, the component displays a loading indicator. When the promise is resolved successfully, the component displays the country information as a flag icon and name. If the promise is rejected, the component displays an error message.
+
+```javascript
+var RepoList = React.createClass({
+  getInitialState: function() {
+    return { loading: true, error: null, data: null};
+  },
+
+  componentDidMount() {
+    this.props.promise.then(
+      value => this.setState({loading: false, data: value}),
+      error => this.setState({loading: false, error: error}));
+  },
+
+  render: function() {
+    if (this.state.loading) {
+      return <span>Loading...</span>;
+    }
+    else if (this.state.error !== null) {
+      return <span>Error: {this.state.error.message}</span>;
+    }
+    else {
+      var repos = this.state.data.items;
+      var repoList = repos.map(function (repo) {
+        return (
+          <li>
+            <a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}
+          </li>
+        );
+      });
+      return (
+        <main>
+          <h1>Most Popular JavaScript Projects in Github</h1>
+          <ol>{repoList}</ol>
+        </main>
+      );
+    }
+  }
+});
+```
+
+## Demo13: Server-side rendering ([source](https://github.com/ruanyf/react-demos/tree/master/demo13/src))
 
 This demo is copied from [github.com/mhart/react-server-example](https://github.com/mhart/react-server-example), but I rewrote it with JSX syntax.
 
