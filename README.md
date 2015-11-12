@@ -397,13 +397,13 @@ ReactDOM.render(
 );
 ```
 
-## Demo12: Display value from a Promise ([source](https://github.com/ruanyf/react-demos/tree/master/demo12/src))
+## Demo12: Display value from a Promise ([source](https://github.com/ruanyf/react-demos/tree/master/demo12/index.html))
 
 This demo is inspired by Nat Pryce's article ["Higher Order React Components"](http://natpryce.com/articles/000814.html).
 
 If a React component's data is received asynchronously, we can use a Promise object as the component's property also, just as the following.
 
-```html
+```javascript
 ReactDOM.render(
   <RepoList
     promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}
@@ -412,9 +412,9 @@ ReactDOM.render(
 );
 ```
 
-The above code takes data from Github's API, and the RepoList component gets a Promise object as its property.
+The above code takes data from Github's API, and the `RepoList` component gets a Promise object as its property.
 
-Now, while the promise is pending, the component displays a loading indicator. When the promise is resolved successfully, the component displays the country information as a flag icon and name. If the promise is rejected, the component displays an error message.
+Now, while the promise is pending, the component displays a loading indicator. When the promise is resolved successfully, the component displays a list of repository information. If the promise is rejected, the component displays an error message.
 
 ```javascript
 var RepoList = React.createClass({
