@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
   </head>
   <body>
@@ -9,7 +10,7 @@
     <script type="text/babel">
       var names = ['Alice', 'Emily', 'Kate'];
 
-      React.render(
+      ReactDOM.render(
         <div>
         {
           names.map(function (name) {

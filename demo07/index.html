@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
   </head>
   <body>
@@ -9,8 +10,9 @@
     <script type="text/babel">
 var MyComponent = React.createClass({
   handleClick: function() {
-    console.log(this)
-    React.findDOMNode(this.refs.myTextInput).focus();
+
+    this.refs.myTextInput.focus();
+
   },
   render: function() {
     return (
@@ -22,7 +24,7 @@ var MyComponent = React.createClass({
   }
 });
 
-React.render(
+ReactDOM.render(
   <MyComponent />,
   document.getElementById('example')
 );

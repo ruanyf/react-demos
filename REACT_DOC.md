@@ -1,3 +1,5 @@
+# 关于facebook官方关于react文档的部分摘要
+
 # React生命周期
 
 componentDidUpdate，componentDidMount（只触发一次）时机适用于操作dom
@@ -20,9 +22,6 @@ getInitialState()  【仅仅执行一次】 返回的值将作为this.state的�
 
 getDefaultProps()   【仅仅执行一次】 
 
-
-
-
 # render 方法
 - <noscript>标签适用于react的Dom Diff算法，和return null具有相同的效果
 - render会根据this.props 和 this.state，来渲染对应的Dom
@@ -33,6 +32,3 @@ react 只有在最外层使用唯一一个事件监听器处理所有事件，�
 # 从属关系
 组件不能修改自身的 props - 它们总是与它们拥有者设置的保持一致。这是保持用户界面一致性的关键性原则
 
-# 重新渲染过程优化
-react在子组件进行重新渲染【排序】的过程中，如果在map函数里面定义了key，可以保证dom不被删除而是被重新排序
-，类似的如果不手动定义key，传入的是一个对象的话，
