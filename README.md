@@ -136,7 +136,7 @@ var HelloMessage = React.createClass({
       Hello {this.props.name}
     </h1><p>
       some text
-      </p>;
+    </p>;
   }
 });
 
