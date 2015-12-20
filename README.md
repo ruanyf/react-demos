@@ -7,6 +7,7 @@ These demos are purposely written in a simple and clear style. You will find no 
 - [Webpack Demos](https://github.com/ruanyf/webpack-demos)
 - [Flux Demo 01](https://github.com/ruanyf/flux-for-stupid-people-demo)
 - [Flux Demo 02](https://github.com/ruanyf/flux-todomvc-demo)
+- [A boilerplate for React-Babel-Webpack project](https://github.com/ruanyf/react-babel-webpack-boilerplate)
 
 ## How to use
 
@@ -110,7 +111,7 @@ ReactDOM.render(
 
 `React.createClass()` creates a component class, which implements a render method to return an component instance of the class. You don't need to call `new` on the class in order to get an instance, just use it as a normal HTML tag.
 
-```js
+```javascript
 var HelloMessage = React.createClass({
   render: function() {
     return <h1>Hello {this.props.name}</h1>;
@@ -123,7 +124,32 @@ ReactDOM.render(
 );
 ```
 
-Components can have attributes, and you can use `this.props.[attribute]` to access them, just like `this.props.name` of `<HelloMessage name="John" />` is John.
+Components would have attributes, and you can use `this.props.[attribute]` to access them, just like `this.props.name` of `<HelloMessage name="John" />` is John.
+
+Please remember the first letter of the component's name must be capitalized, otherwise React will throw an error. For instance, `HelloMessage` as a component's name is OK, but `helloMessage` is not allowed. And a React component should only one top child node.
+
+```javascript
+// wrong
+var HelloMessage = React.createClass({
+  render: function() {
+    return <h1>
+      Hello {this.props.name}
+    </h1><p>
+      some text
+      </p>;
+  }
+});
+
+// correct
+var HelloMessage = React.createClass({
+  render: function() {
+    return <div>
+      <h1>Hello {this.props.name}</h1>
+      <p>some text</p>
+    </div>;
+  }
+});
+```
 
 ## Demo05: this.props.children ([source](https://github.com/ruanyf/react-demos/blob/master/demo05/index.html))
 
@@ -348,13 +374,13 @@ ReactDOM.render(
 
 The following is [a whole list of lifecycle methods](http://facebook.github.io/react/docs/component-specs.html#lifecycle-methods).
 
-- componentWillMount()
-- componentDidMount()
-- componentWillUpdate(object nextProps, object nextState)
-- componentDidUpdate(object prevProps, object prevState)
-- componentWillUnmount()
-- componentWillReceiveProps(object nextProps): invoked when a mounted component receives new props.
-- shouldComponentUpdate(object nextProps, object nextState): invoked when a component decides whether any changes warrant an update to the DOM.
+- **componentWillMount()**: Fired once, before initial rendering occurs. Good place to wire-up message listeners. `this.setState` doesn't work here.
+- **componentDidMount()**: Fired once, after initial rendering occurs. Can use `this.getDOMNode()`.
+- **componentWillUpdate(object nextProps, object nextState)**: Fired after the component's updates are made to the DOM. Can use `this.getDOMNode()` for updates.
+- **componentDidUpdate(object prevProps, object prevState)**: Invoked immediately after the component's updates are flushed to the DOM. This method is not called for the initial render. Use this as an opportunity to operate on the DOM when the component has been updated.
+- **componentWillUnmount()**: Fired immediately before a component is unmounted from the DOM. Good place to remove message listeners or general clean up.
+- **componentWillReceiveProps(object nextProps)**: Fired when a component is receiving new props. You might want to `this.setState` depending on the props.
+- **shouldComponentUpdate(object nextProps, object nextState)**: Fired before rendering when new props or state are received. `return false` if you know an update isn't needed.
 
 ## Demo11: Ajax ([source](https://github.com/ruanyf/react-demos/blob/master/demo11/index.html))
 
