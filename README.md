@@ -2,11 +2,10 @@ This is a collection of simple demos of React.js.
 
 These demos are purposely written in a simple and clear style. You will find no difficulty in following them to learn the powerful library.
 
-## Related Demos
+## Related Projects
 
+- [Flux Demo](https://github.com/ruanyf/extremely-simple-flux-demo)
 - [Webpack Demos](https://github.com/ruanyf/webpack-demos)
-- [Flux Demo 01](https://github.com/ruanyf/flux-for-stupid-people-demo)
-- [Flux Demo 02](https://github.com/ruanyf/flux-todomvc-demo)
 - [A boilerplate for React-Babel-Webpack project](https://github.com/ruanyf/react-babel-webpack-boilerplate)
 
 ## How to use
