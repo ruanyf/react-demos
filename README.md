@@ -6,6 +6,7 @@ These demos are purposely written in a simple and clear style. You will find no 
 
 - [Flux Demo](https://github.com/ruanyf/extremely-simple-flux-demo)
 - [Webpack Demos](https://github.com/ruanyf/webpack-demos)
+- [React Router Tutorial](https://github.com/reactjs/react-router-tutorial)
 - [React Testing Demo](https://github.com/ruanyf/react-testing-demo)
 - [A boilerplate for React-Babel-Webpack project](https://github.com/ruanyf/react-babel-webpack-boilerplate)
 
