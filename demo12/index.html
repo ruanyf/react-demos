@@ -48,7 +48,7 @@ var RepoList = React.createClass({
 });
 
 ReactDOM.render(
-  <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
+  <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=language:javascript&sort=stars')} />,
   document.body
 );
     </script>
