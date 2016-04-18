@@ -6,6 +6,7 @@
     <script src="../build/browser.min.js"></script>
   </head>
   <body>
+    <div id="example"></div>
     <script type="text/babel">
       var Hello = React.createClass({
         getInitialState: function () {
@@ -38,7 +39,7 @@
 
       ReactDOM.render(
         <Hello name="world"/>,
-        document.body
+        document.getElementById('example')
       );
     </script>
   </body>

@@ -7,6 +7,7 @@
     <script src="../build/jquery.min.js"></script>
   </head>
   <body>
+    <div id="example"></div>
     <script type="text/babel">
 var UserGist = React.createClass({
   getInitialState: function() {
@@ -39,7 +40,7 @@ var UserGist = React.createClass({
 
 ReactDOM.render(
   <UserGist source="https://api.github.com/users/octocat/gists" />,
-  document.body
+  document.getElementById('example')
 );
     </script>
   </body>
