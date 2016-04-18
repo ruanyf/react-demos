@@ -7,6 +7,7 @@
     <script src="../build/jquery.min.js"></script>
   </head>
   <body>
+    <div id="example"></div>
     <script type="text/babel">
 var RepoList = React.createClass({
   getInitialState: function() {
@@ -32,9 +33,9 @@ var RepoList = React.createClass({
     }
     else {
       var repos = this.state.data.items;
-      var repoList = repos.map(function (repo) {
+      var repoList = repos.map(function (repo, index) {
         return (
-          <li><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}</li>
+          <li key={index}><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}</li>
         );
       });
       return (
@@ -49,7 +50,7 @@ var RepoList = React.createClass({
 
 ReactDOM.render(
   <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
-  document.body
+  document.getElementById('example')
 );
     </script>
   </body>

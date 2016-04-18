@@ -72,7 +72,7 @@ ReactDOM.render(
 );
 ```
 
-Attention, you have to use `<script type="text/babel">` to indicate JSX codes, and include `browser.min.js`, which is a [browser version](https://babeljs.io/docs/usage/browser/) of Babel and could be get inside a [babel-core](https://www.npmjs.com/package/babel-core) npm release, to actually perform the transformation in the browser.
+Attention, you have to use `<script type="text/babel">` to indicate JSX codes, and include `browser.min.js`, which is a [browser version](https://babeljs.io/docs/usage/browser/) of Babel and could be get inside a [babel-core@5](https://www.npmjs.com/package/babel-core) npm release, to actually perform the transformation in the browser.
 
 Before v0.14, React use `JSTransform.js` to translate `<script type="text/jsx">`. It has been deprecated ([more info](https://facebook.github.io/react/blog/2015/06/12/deprecating-jstransform-and-react-tools.html)).
 
@@ -80,7 +80,7 @@ Before v0.14, React use `JSTransform.js` to translate `<script type="text/jsx">`
 
 [demo](http://ruanyf.github.io/react-demos/demo02/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo02/index.html)
 
-You could also use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets ({) as the beginning of JavaScript syntax.
+You could also use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets (`{`) as the beginning of JavaScript syntax.
 
 ```js
 var names = ['Alice', 'Emily', 'Kate'];
@@ -186,7 +186,7 @@ ReactDOM.render(
     <span>hello</span>
     <span>world</span>
   </NotesList>,
-  document.body
+  document.getElementById('example')
 );
 ```
 
@@ -225,7 +225,7 @@ var data = 123;
 
 ReactDOM.render(
   <MyTitle title={data} />,
-  document.body
+  document.getElementById('example')
 );
 ```
 
@@ -254,7 +254,7 @@ var MyTitle = React.createClass({
 
 ReactDOM.render(
   <MyTitle />,
-  document.body
+  document.getElementById('example')
 );
 ```
 
@@ -346,7 +346,7 @@ var Input = React.createClass({
   }
 });
 
-ReactDOM.render(<Input/>, document.body);
+ReactDOM.render(<Input/>, document.getElementById('example'));
 ```
 
 More information on [official document](http://facebook.github.io/react/docs/forms.html).
@@ -389,7 +389,7 @@ var Hello = React.createClass({
 
 ReactDOM.render(
   <Hello name="world"/>,
-  document.body
+  document.getElementById('example')
 );
 ```
 
@@ -442,7 +442,7 @@ var UserGist = React.createClass({
 
 ReactDOM.render(
   <UserGist source="https://api.github.com/users/octocat/gists" />,
-  document.body
+  document.getElementById('example')
 );
 ```
 
@@ -459,7 +459,7 @@ ReactDOM.render(
   <RepoList
     promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}
   />,
-  document.body
+  document.getElementById('example')
 );
 ```
 

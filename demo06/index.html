@@ -6,6 +6,7 @@
     <script src="../build/browser.min.js"></script>
   </head>
   <body>
+    <div id="example"></div>
     <script type="text/babel">
 
       var data = 123;
@@ -22,7 +23,7 @@
 
       ReactDOM.render(
         <MyTitle title={data} />,
-        document.body
+        document.getElementById('example')
       );
 
     </script>
