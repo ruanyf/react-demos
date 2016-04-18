@@ -14565,7 +14565,7 @@ var EVENT_SUPPRESSION = {
 
   /**
    * @param {boolean} previouslyEnabled Enabled status of
-   *   `ReactBrowserEventEmitter` before the reconciliation occured. `close`
+   *   `ReactBrowserEventEmitter` before the reconciliation occurred. `close`
    *   restores the previous value.
    */
   close: function(previouslyEnabled) {
@@ -15475,7 +15475,7 @@ var ReactTestUtils = {
   },
 
   /**
-   * Simulates a top level event being dispatched from a raw event that occured
+   * Simulates a top level event being dispatched from a raw event that occurred
    * on an `Element` node.
    * @param topLevelType {Object} A type from `EventConstants.topLevelTypes`
    * @param {!Element} node The dom to simulate an event occurring on.
@@ -15490,7 +15490,7 @@ var ReactTestUtils = {
   },
 
   /**
-   * Simulates a top level event being dispatched from a raw event that occured
+   * Simulates a top level event being dispatched from a raw event that occurred
    * on the `ReactDOMComponent` `comp`.
    * @param topLevelType {Object} A type from `EventConstants.topLevelTypes`.
    * @param comp {!ReactDOMComponent}
@@ -18434,7 +18434,7 @@ var Transaction = {
   Mixin: Mixin,
 
   /**
-   * Token to look for to determine if an error occured.
+   * Token to look for to determine if an error occurred.
    */
   OBSERVED_ERROR: {}
 

@@ -13912,7 +13912,7 @@ var EVENT_SUPPRESSION = {
 
   /**
    * @param {boolean} previouslyEnabled Enabled status of
-   *   `ReactBrowserEventEmitter` before the reconciliation occured. `close`
+   *   `ReactBrowserEventEmitter` before the reconciliation occurred. `close`
    *   restores the previous value.
    */
   close: function(previouslyEnabled) {
@@ -16719,7 +16719,7 @@ var Transaction = {
   Mixin: Mixin,
 
   /**
-   * Token to look for to determine if an error occured.
+   * Token to look for to determine if an error occurred.
    */
   OBSERVED_ERROR: {}
 
