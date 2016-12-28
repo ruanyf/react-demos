@@ -21,11 +21,11 @@
     /*添加组件属性，有一个地方需要注意，就是 class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。*/
     var MyComponent = React.createClass({
         render: function () {
-            return <h1>hello {this.props.name}</h1>;
+            return <h1>hello {this.props.name+this.props.for}</h1>;
         }
     });
     ReactDOM.render(
-            <MyComponent name="付颖志"/>,
+            <MyComponent name="付颖志" for="类名"/>,
         document.getElementById('d1')
     );
 

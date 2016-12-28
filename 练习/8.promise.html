@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <script src="../build/react.js"></script>
     <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
     <script src="../build/jquery.min.js"></script>
 </head>
 <body>
-<div id="example"></div>
+
+<div id="d1"></div>
+
 <script type="text/babel">
+
     var RepoList = React.createClass({
         getInitialState: function () {
             return {
@@ -17,27 +22,26 @@
                 data: null
             };
         },
-
-        componentDidMount: function() {
+        componentDidMount: function () {
             this.props.promise.then(
                 value => this.setState({loading: false, data: value}),
                 error => this.setState({loading: false, error: error})
             )
         },
-
         render: function () {
             if (this.state.loading) {
-                return <span>Loading...</span>;
-            }
-            else if (this.state.error !== null) {
+                return <span>Loading...</span>
+            } else if (this.state.error != null) {
                 return <span>Error: {this.state.error.message}</span>;
-            }
-            else {
+            } else {
                 var repos = this.state.data.items;
                 var repoList = repos.map(function (repo, index) {
                     return (
-                            <li key={index}><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars)
-                                <br/> {repo.description}</li>
+                            <li key={index}>
+                                <a href={repo.html_url}>{repo.name}</a>({repo.stargazers_count}stars)
+                                <br/>
+                                {repo.description}
+                            </li>
                     );
                 });
                 return (
@@ -45,15 +49,17 @@
                             <h1>Most Popular JavaScript Projects in Github</h1>
                             <ol>{repoList}</ol>
                         </main>
-                );
+                )
             }
         }
     });
 
     ReactDOM.render(
-            <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}/>,
-        document.getElementById('example')
+            <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
+        document.getElementById('d1')
     );
+
 </script>
+
 </body>
 </html>
