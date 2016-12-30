@@ -19,9 +19,9 @@
      注意，组件类的第一个字母必须大写，否则会报错，比如HelloMessage不能写成helloMessage。另外，组件类只能包含一个顶层标签，否则也会报错。*/
 
     /*添加组件属性，有一个地方需要注意，就是 class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。*/
-    var MyComponent = React.createClass({
+    const MyComponent = React.createClass({
         render: function () {
-            return <h1>hello {this.props.name+this.props.for}</h1>;
+            return <h1>hello {this.props.name + this.props.for}</h1>;
         }
     });
     ReactDOM.render(
@@ -32,13 +32,13 @@
 
 
     /*
-        this.props.children 的值有三种可能：
-            如果当前组件没有子节点，它就是 undefined ;
-            如果有一个子节点，数据类型是 object ；
-            如果有多个子节点，数据类型就是 array
-    */
+     this.props.children 的值有三种可能：
+     如果当前组件没有子节点，它就是 undefined ;
+     如果有一个子节点，数据类型是 object ；
+     如果有多个子节点，数据类型就是 array
+     */
 
-    var NotesList = React.createClass({
+    const NotesList = React.createClass({
         render: function () {
             return (
                     <ol>
@@ -51,7 +51,6 @@
             );
         }
     });
-
     ReactDOM.render(
             <NotesList>
                 <span>hello</span>
@@ -62,16 +61,16 @@
 
 
     //组件的属性可以接受任意值，字符串、对象、函数等等都可以,
-    var data = '123';
-    var MyTitle = React.createClass({
+    let data = '123';
+    const MyTitle = React.createClass({
         propTypes: {  //PropTypes属性，就是用来验证组件实例的属性是否符合要求
             title: React.PropTypes.string.isRequired
         },
         getDefaultProps: function () {  //getDefaultProps 方法可以用来设置组件属性的默认值。
-          return {
-              name: "付颖志",
-              age: 22
-          }
+            return {
+                name: "付颖志",
+                age: 22
+            }
         },
         render: function () {
             return <h1 name={this.props.name}>{this.props.title}<span>,{this.props.age}</span></h1>;
@@ -79,12 +78,9 @@
     });
 
     ReactDOM.render(
-        <MyTitle title={data} />,
+            <MyTitle title={data}/>,
         document.getElementById('d3')
     )
-
-
-
 
 
 </script>

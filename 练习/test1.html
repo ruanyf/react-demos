@@ -11,6 +11,11 @@
 
 <div id="root"></div>
 
+<div id="d2"></div>
+<div id="d3"></div>
+<div id="d4"></div>
+
+
 <script type="text/babel">
     function tick() {
         const element = (
@@ -23,9 +28,48 @@
             element,
             document.getElementById('root')
         );
+
+    }
+    setInterval(tick, 1000);
+
+
+    class MyComponent extends React.Component {
+        render() {
+            return <h1> i am h2 </h1>
+        }
+    }
+    ReactDOM.render(
+            <MyComponent/>,
+        document.getElementById('d2')
+    );
+
+
+    function Welcome(props) {
+        return <h1>Hello, {props.name}</h1>;
     }
 
-    setInterval(tick, 1000);
+    const element = <Welcome name="Sara"/>;
+    ReactDOM.render(
+        element,
+        document.getElementById('d3')
+    );
+
+
+    function App() {
+        return (
+                <div>
+                    <Welcome name="Sara"/>
+                    <Welcome name="Cahal"/>
+                    <Welcome name="Edite"/>
+                </div>
+        );
+    }
+
+    ReactDOM.render(
+            <App />,
+        document.getElementById('d4')
+    );
+
 </script>
 </body>
 </html>
