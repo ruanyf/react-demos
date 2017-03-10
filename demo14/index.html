@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="src/bootstrap.min.css" rel="stylesheet">
+	<script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <style>
+    .child {
+        border-color: black;
+        border: 1px solid;
+        height: 200px;
+    }
+    .parent {
+        height: 400px;
+        border: 3px solid;
+    }
+    </style>
+</head>
+<body>
+	 <h4 class="text-center  col-xs-12  " style="margin: 100px auto;">react子组件跟父组件之间的通信</h4>
+
+
+	 <div id="well"></div>
+
+
+	  <script type="text/babel">
+        var Child = React.createClass({
+            getInitialState: function() {
+                return {color: ""};
+            },
+            changeColor: function(e) {
+                this.setState({color: e.target.getAttribute("data-color")});
+            },
+            render: function() {
+                return (
+                    <div style={{backgroundColor: this.state.color}} className="col-xs-5 col-xs-offset-1 child">
+                        <br/>
+                        <ul className="list-inline">
+                            <li><a href="#" data-color="#286090" className="btn btn-primary" onClick={this.props.parentChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#31b0d5" className="btn btn-info" onClick={this.props.parentChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#c9302c" className="btn btn-danger" onClick={this.props.parentChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#ec971f" className="btn btn-warning" onClick={this.props.parentChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#e6e6e6" className="btn btn-default" onClick={this.props.parentChangeColor}>&nbsp;</a></li>
+                        </ul>
+                    </div>
+                );
+            }
+        });
+
+        var Parent = React.createClass({
+            getInitialState: function() {
+                return {color: ""};
+            },
+            changeColor: function(e) {
+                this.setState({color: e.target.getAttribute("data-color")});
+            },
+            child1ChangeColor: function(e) {
+                this.refs["child1"].changeColor(e);
+            },
+            child2ChangeColor: function(e) {
+                this.refs["child2"].changeColor(e);
+            },
+            render: function() {
+                return (
+                    <div style={{backgroundColor: this.state.color}} className="col-xs-10 col-xs-offset-1 parent">
+                        <br/>
+                        <ul className="list-inline">
+                            <li>对应第一个child</li>
+                            <li><a href="#" data-color="#286090" className="btn btn-primary" onClick={this.child1ChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#31b0d5" className="btn btn-info" onClick={this.child1ChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#c9302c" className="btn btn-danger" onClick={this.child1ChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#ec971f" className="btn btn-warning" onClick={this.child1ChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#e6e6e6" className="btn btn-default" onClick={this.child1ChangeColor}>&nbsp;</a></li>
+                        </ul>
+                        <ul className="list-inline">
+                            <li>对应第二个child</li>
+                            <li><a href="#" data-color="#286090" className="btn btn-primary" onClick={this.child2ChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#31b0d5" className="btn btn-info" onClick={this.child2ChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#c9302c" className="btn btn-danger" onClick={this.child2ChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#ec971f" className="btn btn-warning" onClick={this.child2ChangeColor}>&nbsp;</a></li>
+                            <li><a href="#" data-color="#e6e6e6" className="btn btn-default" onClick={this.child2ChangeColor}>&nbsp;</a></li>
+                        </ul>
+                        <hr/>
+
+                        <Child ref="child1" parentChangeColor={this.changeColor} />
+                        <Child ref="child2" parentChangeColor={this.changeColor} />
+                    </div>
+                );
+            }
+        });
+
+        
+        ReactDOM.render(
+            <Parent/>,
+            document.getElementById('well')
+        );
+
+        </script>
+</body>
+</html>
