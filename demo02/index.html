@@ -13,8 +13,8 @@
       ReactDOM.render(
         <div>
         {
-          names.map(function (name) {
-            return <div>Hello, {name}!</div>
+          names.map(function (name, index) {
+            return <div key={index}>Hello, {name}!</div>
           })
         }
         </div>,
