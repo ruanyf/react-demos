@@ -1,47 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <script src="../build/react.js"></script>
     <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
     <script src="../build/jquery.min.js"></script>
-  </head>
-  <body>
-    <div id="example"></div>
-    <script type="text/babel">
-var UserGist = React.createClass({
-  getInitialState: function() {
-    return {
-      username: '',
-      lastGistUrl: ''
-    };
-  },
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var UserGist = React.createClass({
+        getInitialState: function () {
+            return {
+                username: '',
+                lastGistUrl: ''
+            };
+        },
 
-  componentDidMount: function() {
-    $.get(this.props.source, function(result) {
-      var lastGist = result[0];
-      if (this.isMounted()) {
-        this.setState({
-          username: lastGist.owner.login,
-          lastGistUrl: lastGist.html_url
-        });
-      }
-    }.bind(this));
-  },
+        componentDidMount: function () {
+            $.get(this.props.source, function (result) {
+                var lastGist = result[0];
+                console.log(lastGist)
+                if (this.isMounted()) {
+                    this.setState({
+                        username: lastGist.owner.login,
+                        lastGistUrl: lastGist.html_url
+                    });
+                }
+            }.bind(this));
+//            var _this = this;
+//            $.ajax({
+//                url: _this.props.source,
+////                dataType: 'jsonp',
+//                success: function (result) {
+//                    console.log(result);
+//                }
+//            })
+        },
 
-  render: function() {
-    return (
-      <div>
-        {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>.
-      </div>
+        render: function () {
+            return (
+                    <div>
+                        {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>.
+                    </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+            <UserGist source="https://api.github.com/users/octocat/gists"/>,
+        document.getElementById('example')
     );
-  }
-});
-
-ReactDOM.render(
-  <UserGist source="https://api.github.com/users/octocat/gists" />,
-  document.getElementById('example')
-);
-    </script>
-  </body>
+</script>
+</body>
 </html>

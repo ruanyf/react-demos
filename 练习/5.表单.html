@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+
+<div id="d1"></div>
+
+<script type="text/babel">
+
+    /*文本输入框的值，不能用 this.props.value 读取，而要定义一个 onChange 事件的回调函数，通过 event.target.value 读取用户输入的值。textarea 元素、select元素、radio元素都属于这种情况，*/
+
+    var Input = React.createClass({
+        getInitialState: function () {
+            return {value: 'hello'};
+        },
+        handelClick: function (event) {
+            console.log(event.target, event.target.value)  //<input type="text"> "hellodv"
+            this.setState({value: event.target.value});
+        },
+        render: function () {
+            var value = this.state.value;
+            return (
+                    <div>
+                        <input type="text" value={value} onChange={this.handelClick}/>
+                        <p>{value}</p>
+                    </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+        <Input />,
+        document.getElementById('d1')
+    )
+
+</script>
+
+</body>
+</html>

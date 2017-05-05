@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>状态机</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <style>
+        h1{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="d1"></div>
+
+<script type="text/babel">
+
+    /* getInitialState 方法用于定义初始状态，也就是一个对象，这个对象可以通过 this.state 属性读取。
+    当用户点击组件，导致状态变化，this.setState 方法就修改状态值，每次修改以后，自动调用 this.render 方法，再次渲染组件。
+     由于 this.props 和 this.state 都用于描述组件的特性，可能会产生混淆:
+     一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，
+      而 this.state 是会随着用户互动而产生变化的特性。*/
+
+
+    var LikeButton = React.createClass({
+        getInitialState: function () {
+            return {liked: false};
+        },
+        handleClick: function (event) {
+            this.setState({liked: !this.state.liked});
+        },
+
+        render: function () {
+            var text = this.state.liked ? 'like' : 'haven\'t liked';
+            return (
+                    <h1 onClick={this.handleClick}>
+                        you {text} this. Click to toggle.
+                    </h1>
+            )
+        }
+    });
+
+    ReactDOM.render(
+        <LikeButton/>,
+        document.getElementById('d1')
+    )
+
+</script>
+
+</body>
+</html>

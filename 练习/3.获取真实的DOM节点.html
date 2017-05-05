@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取真实的DOM节点</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+
+<div id="d1"></div>
+
+<script type="text/babel">
+
+    /*组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。
+        只有当它插入文档以后，才会变成真实的 DOM */
+    /*根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。*/
+    //有时需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性
+    /*
+    * 需要注意的是，由于 this.refs.[refName] 属性获取的是真实 DOM ，所以必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错
+    * */
+    var MyComponent = React.createClass({
+        handleClick: function () {
+            this.refs.fyz.focus();
+            console.log(this.refs.fyz.value);
+        },
+        render: function () {
+            return (
+                <div>
+                    <input type="text" ref="fyz"/>
+                    <input type="button" value="click me" onClick={this.handleClick}/>
+                </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+        <MyComponent />,
+        document.getElementById('d1')
+    )
+</script>
+
+</body>
+</html>

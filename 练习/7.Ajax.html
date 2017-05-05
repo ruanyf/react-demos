@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Title</title>-->
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <script src="../build/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="d1"></div>
+
+<script type="text/babel">
+
+    /*组件的数据来源，通常是通过 Ajax 请求从服务器获取，可以使用 componentDidMount 方法设置 Ajax 请求，等到请求成功，再用 this.setState 方法重新渲染 UI */
+
+    var UserGist = React.createClass({
+        getInitialState: function () {
+            return {
+                username: '',
+                lastGistUrl: ''
+            };
+        },
+        componentDidMount: function () {
+//            console.log('componentDidMount');
+            var _this = this;
+            $.ajax({
+                url: _this.props.source,
+//                dataType: 'jsonp',
+                success: function (result) {
+                    console.log(result);
+                    var lastGist = result[0];
+                    console.log(_this);
+                    if (_this.isMounted()) {
+                        _this.setState({
+                            username: lastGist.owner.login,
+                            lastGistUrl: lastGist.html_url
+                        });
+                    }
+                }
+            });
+
+//            $.get(this.pros.source, function (result) {
+//                console.log(result);
+//                var lastGist = result[0];
+//                console.log(lastGist);
+//                if (this.isMounted()) {
+//                    this.setState({
+//                        username: lastGist.owner.login,
+//                        lastGistUrl: lastGist.html_url
+//                    });
+//                }
+//            }.bind(this));
+        },
+        render: function () {
+            return (
+                    <div>
+                        {this.state.username}·s last gist is <a href={this.state.lastGistUrl}>here</a>
+                    </div>
+            )
+        }
+    });
+
+    ReactDOM.render(
+            <UserGist source="https://api.github.com/users/octocat/gists"/>,
+        document.getElementById('d1')
+    );
+
+
+</script>
+
+</body>
+</html>

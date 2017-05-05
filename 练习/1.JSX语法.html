@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+
+<div class="d1"></div>
+<div id="example1"></div>
+<div id="example2"></div>
+
+<script type="text/babel">
+    ReactDOM.render(<h1>this is my first Demo !!! 付颖志</h1>, document.getElementsByClassName('d1')[0]);
+
+    //允许 HTML 与 JavaScript 的混写
+    // JSX 的基本语法规则：遇到 HTML 标签（以 < 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析
+    const names = ['Alice', 'Emily', 'Kate'];
+    ReactDOM.render(
+            <div>
+                {
+                    names.map(function (name) {
+                        return <div>Hello, {name}!</div>
+                    })
+                }
+            </div>,
+        document.getElementById('example1')
+    );
+
+    //JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员
+    const arr = [
+        <h1>Hello world!</h1>,
+        <h2>React is awesome</h2>,
+    ];
+    ReactDOM.render(
+            <div>{arr}</div>,
+        document.getElementById('example2')
+    );
+
+    class Point{
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+        toString(){
+            return '('+  this.x +','+ this.y +')'
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+
+<script type="text/babel">
+
+    class Point {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        toString() {
+            return '(' + this.x + ',' + this.y + ')'
+        }
+    }
+
+    var p = new Point(4, 5);
+    console.log(p.toString());
+
+
+
+    let methodName = "getArea";
+    class Square {
+        constructor(length) {
+            this.length = length;
+        }
+
+        [methodName]() {
+            console.log(this.length);
+        }
+    }
+    let s = new Square(23);
+    s.getArea();
+
+
+
+    var p2 = new Point2(2, 2);
+
+    console.log(p2.toString());
+
+    function Point2(x, y) {
+        this.x = x;
+        this.y = y;
+        this.toString = function () {
+            return '(' + this.x + ',' + this.y + ')'
+        }
+    }
+
+
+</script>
+
+</body>
+</html>
