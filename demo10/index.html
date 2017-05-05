@@ -10,28 +10,57 @@
     <script type="text/babel">
       var Hello = React.createClass({
         getInitialState: function () {
+
           return {
-            opacity: 1.0
+            opacity: 1.0,
+              name:this.props.name,
+                    test:[1,2,3,4,5,5,6],
+              checked:['checked','']
           };
         },
-
+          handleChange:function(e){
+//              debugger
+           this.setState({
+               name: e.target.value,
+               test:[11,2,300000,,4,5]
+           })
+          },
         componentDidMount: function () {
-          this.timer = setInterval(function () {
-            var opacity = this.state.opacity;
-            opacity -= .05;
-            if (opacity < 0.1) {
-              opacity = 1.0;
-            }
-            this.setState({
-              opacity: opacity
-            });
-          }.bind(this), 100);
+
         },
+          handleRadio:function(e,tag){
+              for(var i =0;i<this.state.checked.length;i++){
+                  this.state.checked[i]='';
+              }
+             this.state.checked[tag]='checked';
+            this.setState(
+                    {
+                        checked:this.state.checked
+                    }
+            )
+
+          },
 
         render: function () {
+            var func =  this.state.test.map(function(ele){
+                return (
+                        <input type='text' defaultValue={ele} onChange={this.handleChange}/>
+                )
+        }.bind(this))
+//
           return (
             <div style={{opacity: this.state.opacity}}>
-              Hello {this.props.name}
+              <div>Hello {this.props.name}</div>
+              <div>{func}</div>
+              <form>
+              <label  >
+      <input type='radio' name='radio' checked={this.state.checked[0]} onClick={
+          function(e){debugger;this.handleRadio(e,0)}.bind(this)}
+      />
+      <input type='radio' name='radio' checked={this.state.checked[1]} onClick={function(e){this.handleRadio(e,1)}.bind(this)}/>
+              </label>
+
+              </form>
             </div>
           );
         }
