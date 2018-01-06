@@ -20,12 +20,10 @@ var UserGist = React.createClass({
   componentDidMount: function() {
     $.get(this.props.source, function(result) {
       var lastGist = result[0];
-      if (this.isMounted()) {
-        this.setState({
-          username: lastGist.owner.login,
-          lastGistUrl: lastGist.html_url
-        });
-      }
+      this.setState({
+        username: lastGist.owner.login,
+        lastGistUrl: lastGist.html_url
+      });
     }.bind(this));
   },
 
