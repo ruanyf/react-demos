@@ -27,9 +27,10 @@ Then play with the source files under the repo's demo* directories.
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../build/react.js"></script>
-    <script src="../build/react-dom.js"></script>
-    <script src="../build/browser.min.js"></script>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
   </head>
   <body>
     <div id="example"></div>

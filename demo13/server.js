@@ -1,12 +1,19 @@
 'use strict';
 
+var _app = require('./app');
+
+var _app2 = _interopRequireDefault(_app);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var http = require('http'),
     browserify = require('browserify'),
     literalify = require('literalify'),
     React = require('react'),
     ReactDOMServer = require('react-dom/server');
 
-var App = require('./app');
+// export default
+
 
 http.createServer(function (req, res) {
   if (req.url == '/') {
@@ -17,12 +24,12 @@ http.createServer(function (req, res) {
     var html = ReactDOMServer.renderToStaticMarkup(React.createElement(
       'body',
       null,
-      React.createElement('div', { id: 'content', dangerouslySetInnerHTML: { __html: ReactDOMServer.renderToString(React.createElement(App, { items: props.items }))
+      React.createElement('div', { id: 'content', dangerouslySetInnerHTML: { __html: ReactDOMServer.renderToString(React.createElement(_app2.default, { items: props.items }))
         } }),
       React.createElement('script', { dangerouslySetInnerHTML: { __html: 'var APP_PROPS = ' + JSON.stringify(props) + ';'
         } }),
-      React.createElement('script', { src: '//fb.me/react-0.14.0.min.js' }),
-      React.createElement('script', { src: '//fb.me/react-dom-0.14.0.min.js' }),
+      React.createElement('script', { src: 'https://cdn.jsdelivr.net/npm/react@16.7.0/umd/react.production.min.js' }),
+      React.createElement('script', { src: 'https://cdn.jsdelivr.net/npm/react-dom@16.7.0/umd/react-dom.production.min.js' }),
       React.createElement('script', { src: '/bundle.js' })
     ));
     res.end(html);
