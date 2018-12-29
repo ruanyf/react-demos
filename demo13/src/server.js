@@ -4,7 +4,8 @@ var http = require('http'),
     React = require('react'),
     ReactDOMServer = require('react-dom/server');
 
-var App = require('./app');
+// export default
+import App from './app';
 
 http.createServer(function(req, res) {
   if (req.url == '/') {
@@ -24,8 +25,8 @@ http.createServer(function(req, res) {
         <script dangerouslySetInnerHTML={{__html:
         'var APP_PROPS = ' + JSON.stringify(props) + ';'
         }}/>
-        <script src="//fb.me/react-0.14.0.min.js"/>
-        <script src="//fb.me/react-dom-0.14.0.min.js"/>
+        <script src="https://cdn.jsdelivr.net/npm/react@16.7.0/umd/react.production.min.js"/>
+        <script src="https://cdn.jsdelivr.net/npm/react-dom@16.7.0/umd/react-dom.production.min.js"/>
         <script src="/bundle.js"/>
       </body>
     );

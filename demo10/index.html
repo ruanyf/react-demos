@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../build/react.js"></script>
-    <script src="../build/react-dom.js"></script>
-    <script src="../build/browser.min.js"></script>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
   </head>
   <body>
     <div id="example"></div>
     <script type="text/babel">
-      var Hello = React.createClass({
-        getInitialState: function () {
-          return {
+      class Hello extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
             opacity: 1.0
           };
-        },
+        }
 
-        componentDidMount: function () {
+        componentDidMount() {
           this.timer = setInterval(function () {
             var opacity = this.state.opacity;
             opacity -= .05;
@@ -26,17 +28,17 @@
               opacity: opacity
             });
           }.bind(this), 100);
-        },
+        }
 
-        render: function () {
+        render() {
           return (
             <div style={{opacity: this.state.opacity}}>
               Hello {this.props.name}
             </div>
           );
         }
-      });
-
+      }
+        
       ReactDOM.render(
         <Hello name="world"/>,
         document.getElementById('example')

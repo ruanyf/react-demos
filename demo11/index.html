@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../build/react.js"></script>
-    <script src="../build/react-dom.js"></script>
-    <script src="../build/browser.min.js"></script>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
     <script src="../build/jquery.min.js"></script>
   </head>
   <body>
     <div id="example"></div>
     <script type="text/babel">
-var UserGist = React.createClass({
-  getInitialState: function() {
-    return {
-      username: '',
-      lastGistUrl: ''
-    };
-  },
+      class UserGist extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            username: '',
+            lastGistUrl: ''
+          }
+        }
 
-  componentDidMount: function() {
-    $.get(this.props.source, function(result) {
-      var lastGist = result[0];
-      this.setState({
-        username: lastGist.owner.login,
-        lastGistUrl: lastGist.html_url
-      });
-    }.bind(this));
-  },
+        componentDidMount() {
+          $.get(this.props.source, function(result) {
+            var lastGist = result[0];
+            this.setState({
+              username: lastGist.owner.login,
+              lastGistUrl: lastGist.html_url
+            });
+          }.bind(this));
+        }
 
-  render: function() {
-    return (
-      <div>
-        {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>.
-      </div>
-    );
-  }
-});
+        render() {
+          return (
+            <div>
+              {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>.
+            </div>
+          );
+        }
+      }
 
-ReactDOM.render(
-  <UserGist source="https://api.github.com/users/octocat/gists" />,
-  document.getElementById('example')
-);
+      ReactDOM.render(
+        <UserGist source="https://api.github.com/users/octocat/gists" />,
+        document.getElementById('example')
+      );
     </script>
   </body>
 </html>
