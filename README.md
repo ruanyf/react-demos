@@ -27,9 +27,10 @@ Then play with the source files under the repo's demo* directories.
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../build/react.js"></script>
-    <script src="../build/react-dom.js"></script>
-    <script src="../build/browser.min.js"></script>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
   </head>
   <body>
     <div id="example"></div>
@@ -73,7 +74,7 @@ ReactDOM.render(
 );
 ```
 
-Attention, you have to use `<script type="text/babel">` to indicate JSX codes, and include `browser.min.js`, which is a [browser version](https://babeljs.io/docs/usage/browser/) of Babel and could be get inside a [babel-core@5](https://www.npmjs.com/package/babel-core) npm release, to actually perform the transformation in the browser.
+Attention, you have to use `<script type="text/babel">` to indicate JSX codes, and include `babel.min.js`, which is a [browser version](https://babeljs.io/docs/usage/browser/) of Babel and could be get inside a [babel-core@6](https://www.npmjs.com/package/babel-core) npm release, to actually perform the transformation in the browser.
 
 Before v0.14, React use `JSTransform.js` to translate `<script type="text/jsx">`. It has been deprecated ([more info](https://facebook.github.io/react/blog/2015/06/12/deprecating-jstransform-and-react-tools.html)).
 
@@ -119,14 +120,18 @@ ReactDOM.render(
 
 [demo](http://ruanyf.github.io/react-demos/demo04/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo04/index.html)
 
-`React.createClass()` creates a component class, which implements a render method to return an component instance of the class. You don't need to call `new` on the class in order to get an instance, just use it as a normal HTML tag.
+
+
+`class ComponentName extends React.Component` creates a component class, which implements a render method to return an component instance of the class.
+
+Before v16.0, React use `React.createClass()` to create a component class. It has been deprecated ([more info](https://github.com/facebook/react/blob/master/CHANGELOG.md#removed-deprecations)).
 
 ```javascript
-var HelloMessage = React.createClass({
-  render: function() {
+class HelloMessage extends React.Component {
+  render() {
     return <h1>Hello {this.props.name}</h1>;
   }
-});
+}
 
 ReactDOM.render(
   <HelloMessage name="John" />,
@@ -140,25 +145,25 @@ Please remember the first letter of the component's name must be capitalized, ot
 
 ```javascript
 // wrong
-var HelloMessage = React.createClass({
-  render: function() {
+class HelloMessage extends React.Component {
+  render() {
     return <h1>
       Hello {this.props.name}
     </h1><p>
       some text
     </p>;
   }
-});
+}
 
 // correct
-var HelloMessage = React.createClass({
-  render: function() {
+class HelloMessage extends React.Component {
+  render() {
     return <div>
       <h1>Hello {this.props.name}</h1>
       <p>some text</p>
     </div>;
   }
-});
+}
 ```
 
 ## Demo05: this.props.children
@@ -168,8 +173,8 @@ var HelloMessage = React.createClass({
 React uses `this.props.children` to access a component's children nodes.
 
 ```javascript
-var NotesList = React.createClass({
-  render: function() {
+class NotesList extends React.Component {
+  render() {
     return (
       <ol>
       {
@@ -180,7 +185,7 @@ var NotesList = React.createClass({
       </ol>
     );
   }
-});
+}
 
 ReactDOM.render(
   <NotesList>
@@ -206,15 +211,14 @@ Sometimes you need a way to validate these props. You don't want users have the 
 React has a solution for this and it's called PropTypes.
 
 ```javascript
-var MyTitle = React.createClass({
-  propTypes: {
-    title: React.PropTypes.string.isRequired,
-  },
-
-  render: function() {
-     return <h1> {this.props.title} </h1>;
-   }
-});
+class MyTitle extends React.Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+  }
+  render() {
+    return <h1> {this.props.title} </h1>;
+  }
+}
 ```
 
 The above component of `MyTitle` has a props of `title`. PropTypes tells React that the title is required and its value should be a string.
@@ -236,22 +240,22 @@ It means the props doesn't pass the validation, and the console will show you an
 Warning: Failed propType: Invalid prop `title` of type `number` supplied to `MyTitle`, expected `string`.
 ```
 
-Visit [official doc](http://facebook.github.io/react/docs/reusable-components.html) for more PropTypes options.
+Visit [official doc](https://reactjs.org/docs/typechecking-with-proptypes.html) for more PropTypes options.
 
-P.S. If you want to give the props a default value, use `getDefaultProps()`.
+P.S. If you want to give the props a default value, use `this.state = { ... }`.
 
 ```javascript
-var MyTitle = React.createClass({
-  getDefaultProps : function () {
-    return {
+class MyTitle extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
       title : 'Hello World'
-    };
-  },
-
-  render: function() {
-     return <h1> {this.props.title} </h1>;
-   }
-});
+    }
+  }
+  render() {
+    return <h1> {this.props.title} </h1>;
+  }
+}
 
 ReactDOM.render(
   <MyTitle />,
@@ -259,26 +263,34 @@ ReactDOM.render(
 );
 ```
 
+React.PropTypes has moved into a different package since React v15.5. ([more info](https://reactjs.org/docs/typechecking-with-proptypes.html)).
+
 ## Demo07: Finding a DOM node
 
 [demo](http://ruanyf.github.io/react-demos/demo07/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo07/index.html)
 
-Sometimes you need to reference a DOM node in a component. React gives you the `ref` attribute to find it.
+Sometimes you need to reference a DOM node in a component. React gives you the `ref` attribute to attach a DOM node to instance created by `React.createRef()`.
+
 
 ```js
-var MyComponent = React.createClass({
-  handleClick: function() {
-    this.refs.myTextInput.focus();
-  },
-  render: function() {
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myTextInput = React.createRef();
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick() {
+    this.myTextInput.current.focus();
+  }
+  render() {
     return (
       <div>
-        <input type="text" ref="myTextInput" />
+        <input type="text" ref={this.myTextInput} />
         <input type="button" value="Focus the text input" onClick={this.handleClick} />
       </div>
     );
   }
-});
+}
 
 ReactDOM.render(
   <MyComponent />,
@@ -286,23 +298,26 @@ ReactDOM.render(
 );
 ```
 
-The desired DOM node should have a `ref` attribute, and `this.refs.[refName]` would return the corresponding DOM node. Please be mindful that you could do that only after this component has been mounted into the DOM, otherwise you get `null`.
+Please be mindful that you could do that only after this component has been mounted into the DOM, otherwise you get `null`.
 
 ## Demo08: this.state
 
 [demo](http://ruanyf.github.io/react-demos/demo08/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo08/index.html)
 
-React thinks of component as state machines, and uses `this.state` to hold component's state, `getInitialState()` to initialize `this.state`(invoked before a component is mounted), `this.setState()` to update `this.state` and re-render the component.
+React thinks of component as state machines, and uses `this.state` to hold component's state, `this.setState()` to update `this.state` and re-render the component.
 
 ```js
-var LikeButton = React.createClass({
-  getInitialState: function() {
-    return {liked: false};
-  },
-  handleClick: function(event) {
-    this.setState({liked: !this.state.liked});
-  },
-  render: function() {
+class LikeButton extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {liked: false
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick(event) {
+    this.setState({ liked: !this.state.liked });
+  }
+  render() {
     var text = this.state.liked ? 'like' : 'haven\'t liked';
     return (
       <p onClick={this.handleClick}>
@@ -310,7 +325,7 @@ var LikeButton = React.createClass({
       </p>
     );
   }
-});
+}
 
 ReactDOM.render(
   <LikeButton />,
@@ -329,23 +344,25 @@ According to React's design philosophy, `this.state` describes the state of comp
 Since that, the `value` attribute of Form components, such as &lt;input&gt;, &lt;textarea&gt;, and &lt;option&gt;, is unaffected by any user input. If you wanted to access or update the value in response to user input, you could use the onChange event.
 
 ```js
-var Input = React.createClass({
-  getInitialState: function() {
-    return {value: 'Hello!'};
-  },
-  handleChange: function(event) {
-    this.setState({value: event.target.value});
-  },
-  render: function () {
-    var value = this.state.value;
-    return (
-      <div>
-        <input type="text" value={value} onChange={this.handleChange} />
-        <p>{value}</p>
-      </div>
-    );
-  }
-});
+class Input extends React.Component {
+constructor(props) {
+  super(props)
+  this.state = {value: 'Hello!'}
+  this.handleChange = this.handleChange.bind(this)
+}
+handleChange(event) {
+  this.setState({value: event.target.value});
+}
+render() {
+  var value = this.state.value;
+  return (
+    <div>
+      <input type="text" value={value} onChange={this.handleChange} />
+      <p>{value}</p>
+    </div>
+  );
+}
+}
 
 ReactDOM.render(<Input/>, document.getElementById('example'));
 ```
@@ -359,14 +376,13 @@ More information on [official document](http://facebook.github.io/react/docs/for
 Components have three main parts of [their lifecycle](https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle): Mounting(being inserted into the DOM), Updating(being re-rendered) and Unmounting(being removed from the DOM). React provides hooks into these lifecycle part. `will` methods are called right before something happens, and `did` methods which are called right after something happens.
 
 ```js
-var Hello = React.createClass({
-  getInitialState: function () {
-    return {
-      opacity: 1.0
-    };
-  },
+class Hello extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {opacity: 1.0};
+  }
 
-  componentDidMount: function () {
+  componentDidMount() {
     this.timer = setInterval(function () {
       var opacity = this.state.opacity;
       opacity -= .05;
@@ -377,17 +393,17 @@ var Hello = React.createClass({
         opacity: opacity
       });
     }.bind(this), 100);
-  },
+  }
 
-  render: function () {
+  render() {
     return (
       <div style={{opacity: this.state.opacity}}>
         Hello {this.props.name}
       </div>
     );
   }
-});
-
+}
+  
 ReactDOM.render(
   <Hello name="world"/>,
   document.getElementById('example')
@@ -411,15 +427,16 @@ The following is [a whole list of lifecycle methods](http://facebook.github.io/r
 How to get the data of a component from a server or an API provider? The answer is using Ajax to fetch data in the event handler of `componentDidMount`. When the server response arrives, store the data with `this.setState()` to trigger a re-render of your UI.
 
 ```js
-var UserGist = React.createClass({
-  getInitialState: function() {
-    return {
+class UserGist extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
       username: '',
       lastGistUrl: ''
     };
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     $.get(this.props.source, function(result) {
       var lastGist = result[0];
       this.setState({
@@ -427,9 +444,9 @@ var UserGist = React.createClass({
         lastGistUrl: lastGist.html_url
       });
     }.bind(this));
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div>
         {this.state.username}'s last gist is
@@ -437,7 +454,7 @@ var UserGist = React.createClass({
       </div>
     );
   }
-});
+}
 
 ReactDOM.render(
   <UserGist source="https://api.github.com/users/octocat/gists" />,
@@ -455,9 +472,7 @@ If a React component's data is received asynchronously, we can use a Promise obj
 
 ```javascript
 ReactDOM.render(
-  <RepoList
-    promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}
-  />,
+  <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
   document.getElementById('example')
 );
 ```
@@ -467,18 +482,23 @@ The above code takes data from Github's API, and the `RepoList` component gets a
 Now, while the promise is pending, the component displays a loading indicator. When the promise is resolved successfully, the component displays a list of repository information. If the promise is rejected, the component displays an error message.
 
 ```javascript
-var RepoList = React.createClass({
-  getInitialState: function() {
-    return { loading: true, error: null, data: null};
-  },
+class RepoList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true,
+      error: null,
+      data: null
+    };
+  }
 
   componentDidMount() {
     this.props.promise.then(
       value => this.setState({loading: false, data: value}),
       error => this.setState({loading: false, error: error}));
-  },
+  }
 
-  render: function() {
+  render() {
     if (this.state.loading) {
       return <span>Loading...</span>;
     }
@@ -487,11 +507,9 @@ var RepoList = React.createClass({
     }
     else {
       var repos = this.state.data.items;
-      var repoList = repos.map(function (repo) {
+      var repoList = repos.map(function (repo, index) {
         return (
-          <li>
-            <a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}
-          </li>
+          <li key={index}><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}</li>
         );
       });
       return (
@@ -502,7 +520,7 @@ var RepoList = React.createClass({
       );
     }
   }
-});
+}
 ```
 
 ## Demo13: Server-side rendering

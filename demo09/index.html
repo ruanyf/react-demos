@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../build/react.js"></script>
-    <script src="../build/react-dom.js"></script>
-    <script src="../build/browser.min.js"></script>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
   </head>
   <body>
     <div id="example"></div>
     <script type="text/babel">
-      var Input = React.createClass({
-        getInitialState: function() {
-          return {value: 'Hello!'};
-        },
-        handleChange: function(event) {
-          this.setState({value: event.target.value});
-        },
-        render: function () {
+      class Input extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            value: 'Hello!'
+          }
+          this.handleChange = this.handleChange.bind(this)
+        }
+        handleChange(event) {
+          this.setState({ value: event.target.value });
+        }
+        render() {
           var value = this.state.value;
           return (
             <div>
@@ -24,8 +29,8 @@
             </div>
           );
         }
-      });
-
+      }
+        
       ReactDOM.render(<Input/>, document.getElementById('example'));
     </script>
   </body>

@@ -29,8 +29,8 @@ export default class App extends React.Component{
         <button onClick={this.handleClick.bind(this)} disabled={this.state.disabled}>Add Item</button>
         <ul>
         {
-          this.state.items.map(function(item) {
-            return <li>{item}</li>
+          this.state.items.map(function(item, index) {
+            return <li key={index}>{item}</li>
           })
         }
         </ul>

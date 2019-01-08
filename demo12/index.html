@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../build/react.js"></script>
-    <script src="../build/react-dom.js"></script>
-    <script src="../build/browser.min.js"></script>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
     <script src="../build/jquery.min.js"></script>
   </head>
   <body>
     <div id="example"></div>
     <script type="text/babel">
-var RepoList = React.createClass({
-  getInitialState: function() {
-    return {
-      loading: true,
-      error: null,
-      data: null
-    };
-  },
+      class RepoList extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            loading: true,
+            error: null,
+            data: null
+          };
+        }
 
-  componentDidMount() {
-    this.props.promise.then(
-      value => this.setState({loading: false, data: value}),
-      error => this.setState({loading: false, error: error}));
-  },
+        componentDidMount() {
+          this.props.promise.then(
+            value => this.setState({loading: false, data: value}),
+            error => this.setState({loading: false, error: error}));
+        }
 
-  render: function() {
-    if (this.state.loading) {
-      return <span>Loading...</span>;
-    }
-    else if (this.state.error !== null) {
-      return <span>Error: {this.state.error.message}</span>;
-    }
-    else {
-      var repos = this.state.data.items;
-      var repoList = repos.map(function (repo, index) {
-        return (
-          <li key={index}><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}</li>
-        );
-      });
-      return (
-        <main>
-          <h1>Most Popular JavaScript Projects in Github</h1>
-          <ol>{repoList}</ol>
-        </main>
+        render() {
+          if (this.state.loading) {
+            return <span>Loading...</span>;
+          }
+          else if (this.state.error !== null) {
+            return <span>Error: {this.state.error.message}</span>;
+          }
+          else {
+            var repos = this.state.data.items;
+            var repoList = repos.map(function (repo, index) {
+              return (
+                <li key={index}><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}</li>
+              );
+            });
+            return (
+              <main>
+                <h1>Most Popular JavaScript Projects in Github</h1>
+                <ol>{repoList}</ol>
+              </main>
+            );
+          }
+        }
+      }
+
+      ReactDOM.render(
+        <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
+        document.getElementById('example')
       );
-    }
-  }
-});
-
-ReactDOM.render(
-  <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
-  document.getElementById('example')
-);
     </script>
   </body>
 </html>

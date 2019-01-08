@@ -10,12 +10,14 @@
   "author": "ruanyf",
   "license": "ISC",
   "dependencies": {
-    "browserify": "~9.0.3",
+    "browserify": "^16.2.3",
     "literalify": "~0.4.0",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0"
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
   },
   "devDependencies": {
-    "babel": "~5.8.21"
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
   }
 }
