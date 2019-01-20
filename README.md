@@ -242,15 +242,15 @@ Warning: Failed propType: Invalid prop `title` of type `number` supplied to `MyT
 
 Visit [official doc](https://reactjs.org/docs/typechecking-with-proptypes.html) for more PropTypes options.
 
-P.S. If you want to give the props a default value, use `this.state = { ... }`.
+P.S. If you want to give the props a default value, use `defaultProps`.
 
 ```javascript
 class MyTitle extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      title : 'Hello World'
-    }
+  }
+  static defaultProps = {
+    title: 'Hello World',
   }
   render() {
     return <h1> {this.props.title} </h1>;
