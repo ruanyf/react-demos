@@ -204,7 +204,7 @@ React gave us an utility [`React.Children`](https://facebook.github.io/react/doc
 
 [demo](http://ruanyf.github.io/react-demos/demo06/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo06/index.html)
 
-Components have many specific attributes which are called ”props” in React and can be of any type.
+Components have many specific attributes which are called `props` in React and can be of any type.
 
 Sometimes you need a way to validate these props. You don't want users have the freedom to input anything into your components.
 
@@ -403,7 +403,7 @@ class Hello extends React.Component {
     );
   }
 }
-  
+
 ReactDOM.render(
   <Hello name="world"/>,
   document.getElementById('example')
