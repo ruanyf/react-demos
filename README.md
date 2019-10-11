@@ -310,7 +310,8 @@ React thinks of component as state machines, and uses `this.state` to hold compo
 class LikeButton extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {liked: false
+    this.state = {
+    	liked: false
     }
     this.handleClick = this.handleClick.bind(this)
   }
