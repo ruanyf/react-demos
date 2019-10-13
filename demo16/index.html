@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      class MyComponent extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            myArray: ['Item']
+          }
+        }
+
+        render() {
+          return (
+            <div style={{  }}>
+              <h1>Array state:</h1>
+              <button
+                onClick={() => this.setState(prevState => ({
+                  myArray: [...prevState.myArray, 'Item']
+                }))}
+              >
+                Click me to add an item!
+              </button>
+              {this.state.myArray
+                .map((item, index) => <div key={index.toString()}>{item}</div>)}
+            </div>
+          );
+        }
+      }
+        
+      ReactDOM.render(
+        <MyComponent />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
