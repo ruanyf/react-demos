@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      class MyComponent extends React.Component {
+        componentDidMount() {
+          window.addEventListener('click', this.handleClick, false);
+        }
+        componentWillUnmount() {
+          window.removeEventListener('click', this.handleClick, false);
+        }
+        handleClick(e) {
+          const component = document.getElementById('myComponent')
+          if (component.contains(e.target)) {
+            window.alert('You clicked the grey square!')
+            return
+          }
+          window.alert('You clicked outside the grey square!')
+          return
+        }
+
+        render() {
+          return (
+            <div
+              id='myComponent'
+              style={{
+                height: '200px',
+                padding:'1.5em',
+                backgroundColor: 'grey'
+              }}
+            >
+              <h1>My Component</h1>
+              <span>React can detect if you clicked inside or outside</span>
+              <span
+                style={{ display: 'block', marginTop: '1.5em' }}
+              >
+                Try it!
+              </span>
+            </div>
+          );
+        }
+      }
+        
+      ReactDOM.render(
+        <MyComponent />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
