@@ -540,6 +540,23 @@ $ npm run build
 $ node server.js
 ```
 
+## Demo16: Array State Management
+
+[demo](http://ruanyf.github.io/react-demos/demo16/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo16/index.html)
+
+Many beginners tend to have issues properly handling array variables in React state. What we have to keep in mind is that simply adding an item to a JS array will not trigger React's re-render. We need to change the reference of the array for that to happen. The correct way to do this is:
+
+```javascript
+onClick={() => this.setState(prevState => ({
+  myArray: [...prevState.myArray, 'Item']
+}))}
+```
+
+And never something like this:
+```javascript
+onClick={() => this.setState({ myArray: [myArray, 'Item'] })}
+```
+
 ## Extras
 
 ### Precompiling JSX
