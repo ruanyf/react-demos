@@ -540,6 +540,18 @@ $ npm run build
 $ node server.js
 ```
 
+## Demo17: Object state management
+
+[demo](http://ruanyf.github.io/react-demos/demo17/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo17/index.html)
+
+Same as with arrays, many beginners have trouble managing state with nested objects. The reasoning is similar to the one with arrays: simply changing a member of an object will not trigger a React re-render. It is necessary to change the object's reference, which means we need to create a new object from the old one. With ES6 syntax, the proper way to do it is:
+
+```javascript
+onClick={() => this.setState(prevState => ({
+  myObject: { ...prevState.myObject, myString: 'new value' }
+}))}
+```
+
 ## Extras
 
 ### Precompiling JSX
