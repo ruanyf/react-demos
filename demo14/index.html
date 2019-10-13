@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      class Modal extends React.Component {
+        componentWillMount() {
+          document.body.style.overflow = 'hidden'
+          document.body.style.position = 'fixed'
+        }
+
+        componentWillUnmount() {
+          document.body.style.overflow = 'scroll'
+          document.body.style.position = 'unset'
+        }
+        render() {
+          if (!this.props.open) return null
+          const backdropStyles = {
+            zIndex: 99,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            height: '100%',
+            width: '100%',
+            background: 'rgba(0, 0, 0, 0.5)',
+          }
+          const modalStyles = {
+            transform: 'translate3d(-50%, -50%, 0)',
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            height: '50%',
+            width: '40%',
+            backgroundColor: 'teal',
+            zIndex: 99,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItemes: 'center',
+            padding: '3em',
+          }
+          return (
+            <div
+              style={backdropStyles}
+              aria-hidden
+              onClick={this.props.onClose}
+            >
+              <div style={modalStyles}>
+                <h2>Hello World!</h2>
+              </div>
+            </div>
+          )
+        }
+      }
+
+      class App extends React.Component {
+        state = {
+          modalOpen: false,
+        }
+        render() {
+          return (
+            <div>
+              <h1>
+                Welcome to cool React Modal!
+              </h1>
+              <button
+                onClick={() => this.setState({ modalOpen: true })}
+                style={{ padding: '2em' }}
+              >
+                Open modal!
+              </button>
+              <Modal
+                open={this.state.modalOpen}
+                onClose={() => this.setState({ modalOpen: false })}
+              />
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        <App />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
