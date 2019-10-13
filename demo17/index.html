@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      class MyComponent extends React.Component {
+        state = {
+          myObject: {
+            myString: 'initial value',
+            myNumber: 0,
+          }
+        }
+
+        render() {
+          return (
+            <div style={{ display: 'flex', flexDirection: 'column', width: '30%' }}>
+              <h1>Object state:</h1>
+              <button
+                onClick={() => this.setState(prevState => ({
+                  myObject: { ...prevState.myObject, myString: 'new value' }
+                }))}
+              >
+                Click me to change the string inside the object!
+              </button>
+              <button
+                onClick={() => this.setState(prevState => ({
+                  myObject: { ...prevState.myObject, myNumber: 99 }
+                }))}
+              >
+                Click me to change the number inside the object!
+              </button>
+              <div>String: {this.state.myObject.myString}</div>
+              <div>Number: {this.state.myObject.myNumber}</div>
+            </div>
+          );
+        }
+      }
+        
+      ReactDOM.render(
+        <MyComponent />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
