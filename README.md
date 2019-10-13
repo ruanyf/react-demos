@@ -540,6 +540,12 @@ $ npm run build
 $ node server.js
 ```
 
+## Demo 15: Event Listeners
+
+[demo](http://ruanyf.github.io/react-demos/demo15/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo15/index.html)
+
+This is a simple demo of how we can use event listeners in React. Basically, we use the lifecycle methods to add the listener when component mounts and remove it when component unmounts. This way, we can detect a number of interesting DOM events and interactions from the user.
+
 ## Extras
 
 ### Precompiling JSX
