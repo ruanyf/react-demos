@@ -540,6 +540,104 @@ $ npm run build
 $ node server.js
 ```
 
+## Demo14: Modal
+
+[demo](http://ruanyf.github.io/react-demos/demo14/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo14/index.html)
+
+This demo is meant to display a simple of example of how to implement a modal in React. It 
+automatically handles overflow issues, provider an opaque backdrop and is easily reusable.
+
+ First of all, we define a Modal component that has it's visibility controlled by props:
+
+```javascript
+class Modal extends React.Component {
+  componentWillMount() {
+    document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+  }
+
+  componentWillUnmount() {
+    document.body.style.overflow = 'scroll'
+    document.body.style.position = 'unset'
+  }
+  render() {
+    if (!this.props.open) return null
+    const backdropStyles = {
+      zIndex: 99,
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      height: '100%',
+      width: '100%',
+      background: 'rgba(0, 0, 0, 0.5)',
+    }
+    const modalStyles = {
+      transform: 'translate3d(-50%, -50%, 0)',
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      height: '50%',
+      width: '40%',
+      backgroundColor: 'teal',
+      zIndex: 99,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItemes: 'center',
+      padding: '3em',
+    }
+    return (
+      <div
+        style={backdropStyles}
+        aria-hidden
+        onClick={this.props.onClose}
+      >
+        <div style={modalStyles}>
+          <h2>Hello World!</h2>
+        </div>
+      </div>
+    )
+  }
+}
+```
+
+Then a simple App component is created, in order to implement the Modal's state management:
+
+```javascript
+class App extends React.Component {
+  state = {
+    modalOpen: false,
+  }
+  render() {
+    return (
+      <div>
+        <h1>
+          Welcome to cool React Modal!
+        </h1>
+        <button
+          onClick={() => this.setState({ modalOpen: true })}
+          style={{ padding: '2em' }}
+        >
+          Open modal!
+        </button>
+        <Modal
+          open={this.state.modalOpen}
+          onClose={() => this.setState({ modalOpen: false })}
+        />
+      </div>
+    )
+  }
+}
+```
+
+Then the final code snipper tells React to render our new Modal component.
+
+```javascript
+ReactDOM.render(
+  <App />,
+  document.getElementById('example')
+);
+```
+
 ## Extras
 
 ### Precompiling JSX
