@@ -5,8 +5,11 @@ export default class App extends React.Component{
   constructor(props) {
     super(props);
     this.render = this.render.bind(this);
+
+    const {items} = this.props
+
     this.state = {
-      items: this.props.items,
+      items,
       disabled: true
     };
   }
@@ -18,18 +21,24 @@ export default class App extends React.Component{
   }
 
   handleClick() {
+
+    const { items } = {...this.state }
+
     this.setState({
-      items: this.state.items.concat('Item ' + this.state.items.length)
+      items: items.concat('Item ' + items.length)
     })
   }
 
   render() {
+
+    const { disabled, items } = { ...this.state }
+
     return (
       <div>
-        <button onClick={this.handleClick.bind(this)} disabled={this.state.disabled}>Add Item</button>
+        <button onClick={this.handleClick.bind(this)} disabled={disabled}>Add Item</button>
         <ul>
         {
-          this.state.items.map(function(item, index) {
+          items.map(function(item, index) {
             return <li key={index}>{item}</li>
           })
         }
