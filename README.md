@@ -85,13 +85,13 @@ Before v0.14, React use `JSTransform.js` to translate `<script type="text/jsx">`
 You could also use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets (`{`) as the beginning of JavaScript syntax.
 
 ```js
-var names = ['Alice', 'Emily', 'Kate'];
+let names = ['Alice', 'Emily', 'Kate'];
 
 ReactDOM.render(
   <div>
   {
-    names.map(function (name) {
-      return <div>Hello, {name}!</div>
+    names.map(function (name, index) {
+      return <div key={index}>Hello, {name}!</div>
     })
   }
   </div>,
@@ -106,9 +106,9 @@ ReactDOM.render(
 If a JavaScript variable is an array, JSX will implicitly concat all members of the array.
 
 ```js
-var arr = [
-  <h1>Hello world!</h1>,
-  <h2>React is awesome</h2>,
+let arr = [
+  <h1 key="1">Hello world!</h1>,
+  <h2 key="2">React is awesome</h2>,
 ];
 ReactDOM.render(
   <div>{arr}</div>,
