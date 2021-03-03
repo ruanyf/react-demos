@@ -147,21 +147,26 @@ Please remember the first letter of the component's name must be capitalized, ot
 // wrong
 class HelloMessage extends React.Component {
   render() {
-    return <h1>
-      Hello {this.props.name}
-    </h1><p>
-      some text
-    </p>;
+    return (
+      <h1>
+        Hello {this.props.name}
+      </h1>
+      <p>
+        some text
+      </p>;
+    );
   }
 }
 
 // correct
 class HelloMessage extends React.Component {
   render() {
-    return <div>
+    return (
+    <div>
       <h1>Hello {this.props.name}</h1>
       <p>some text</p>
-    </div>;
+    </div>
+    );
   }
 }
 ```
