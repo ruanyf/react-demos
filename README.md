@@ -85,13 +85,13 @@ Before v0.14, React use `JSTransform.js` to translate `<script type="text/jsx">`
 You could also use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets (`{`) as the beginning of JavaScript syntax.
 
 ```js
-var names = ['Alice', 'Emily', 'Kate'];
+let names = ['Alice', 'Emily', 'Kate'];
 
 ReactDOM.render(
   <div>
   {
-    names.map(function (name) {
-      return <div>Hello, {name}!</div>
+    names.map(function (name, index) {
+      return <div key={index}>Hello, {name}!</div>
     })
   }
   </div>,
@@ -147,21 +147,26 @@ Please remember the first letter of the component's name must be capitalized, ot
 // wrong
 class HelloMessage extends React.Component {
   render() {
-    return <h1>
-      Hello {this.props.name}
-    </h1><p>
-      some text
-    </p>;
+    return (
+      <h1>
+        Hello {this.props.name}
+      </h1>
+      <p>
+        some text
+      </p>;
+    );
   }
 }
 
 // correct
 class HelloMessage extends React.Component {
   render() {
-    return <div>
+    return (
+    <div>
       <h1>Hello {this.props.name}</h1>
       <p>some text</p>
-    </div>;
+    </div>
+    );
   }
 }
 ```
