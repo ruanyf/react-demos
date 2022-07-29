@@ -145,7 +145,7 @@ Please remember the first letter of the component's name must be capitalized, ot
 
 ```javascript
 // wrong
-class HelloMessage extends React.Component {
+class helloMessage extends React.Component {
   render() {
     return <h1>
       Hello {this.props.name}
