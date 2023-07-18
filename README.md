@@ -65,7 +65,7 @@ Then play with the source files under the repo's demo* directories.
 
 [demo](http://ruanyf.github.io/react-demos/demo01/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo01/index.html)
 
-The template syntax in React is called [JSX](http://facebook.github.io/react/docs/displaying-data.html#jsx-syntax). It is allowed in JSX to put HTML tags directly into JavaScript codes. `ReactDOM.render()` is the method which translates JSX into HTML, and renders it into the specified DOM node.
+The template syntax in React is called [JSX](http://facebook.github.io/react/docs/displaying-data.html#jsx-syntax). JSX allows you to use HTML tags in JavaScript code. `ReactDOM.render()` is the method which translates JSX into HTML and renders it into the specified DOM node.
 
 ```js
 ReactDOM.render(
@@ -74,15 +74,15 @@ ReactDOM.render(
 );
 ```
 
-Attention, you have to use `<script type="text/babel">` to indicate JSX codes, and include `babel.min.js`, which is a [browser version](https://babeljs.io/docs/usage/browser/) of Babel and could be get inside a [babel-core@6](https://www.npmjs.com/package/babel-core) npm release, to actually perform the transformation in the browser.
+To actually perform the transformation in the browser, you must use `<script type="text/babel">` to indicate JSX code, and include `babel.min.js`, which is a [browser version](https://babeljs.io/docs/usage/browser/) of Babel and can be found in the [babel-core@6](https://www.npmjs.com/package/babel-core) npm release.
 
-Before v0.14, React use `JSTransform.js` to translate `<script type="text/jsx">`. It has been deprecated ([more info](https://facebook.github.io/react/blog/2015/06/12/deprecating-jstransform-and-react-tools.html)).
+Before v0.14, React used `JSTransform.js` to translate `<script type="text/jsx">`, but this is now deprecated ([more info](https://facebook.github.io/react/blog/2015/06/12/deprecating-jstransform-and-react-tools.html)).
 
 ## Demo02: Use JavaScript in JSX
 
 [demo](http://ruanyf.github.io/react-demos/demo02/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo02/index.html)
 
-You could also use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets (`{`) as the beginning of JavaScript syntax.
+You can also use JavaScript within JSX. Angle brackets (&lt;) symbolize the beginning of HTML syntax, while curly brackets (`{`) represent the beginning of JavaScript syntax.
 
 ```js
 var names = ['Alice', 'Emily', 'Kate'];
@@ -122,9 +122,9 @@ ReactDOM.render(
 
 
 
-`class ComponentName extends React.Component` creates a component class, which implements a render method to return an component instance of the class.
+`class ComponentName extends React.Component` creates a component class, which implements a render method to return a component instance of the class.
 
-Before v16.0, React use `React.createClass()` to create a component class. It has been deprecated ([more info](https://github.com/facebook/react/blob/master/CHANGELOG.md#removed-deprecations)).
+Before v16.0, React used `React.createClass()` to create a component class, but this is now deprecated ([more info](https://github.com/facebook/react/blob/master/CHANGELOG.md#removed-deprecations)).
 
 ```javascript
 class HelloMessage extends React.Component {
@@ -139,7 +139,7 @@ ReactDOM.render(
 );
 ```
 
-Components would have attributes, and you can use `this.props.[attribute]` to access them, just like `this.props.name` of `<HelloMessage name="John" />` is John.
+You can use `this.props.[attribute]` to access the attributes of a component. Example: `this.props.name` of `<HelloMessage name="John" />` is John.
 
 Please remember the first letter of the component's name must be capitalized, otherwise React will throw an error. For instance, `HelloMessage` as a component's name is OK, but `helloMessage` is not allowed. And a React component should only have one top child node.
 
@@ -196,15 +196,15 @@ ReactDOM.render(
 );
 ```
 
-Please be mindful that the value of `this.props.children` has three possibilities. If the component has no children node, the value is `undefined`; If single children node, an object; If multiple children nodes, an array. You should be careful to handle it.
+Please be mindful that the value of `this.props.children` has three possibilities. If the component has no child node, the value is `undefined`; If it has a single child node, the value will be an object; If it has multiple children nodes, the result is an array. Keep this in mind as you code.
 
-React gave us an utility [`React.Children`](https://facebook.github.io/react/docs/top-level-api.html#react.children) for dealing with the `this.props.children`'s opaque data structure. You could use `React.Children.map` to iterate `this.props.children` without worring its data type being `undefined` or `object`. Check [official document](https://facebook.github.io/react/docs/top-level-api.html#react.children) for more methods `React.Children` offers.
+React gave us a utility [`React.Children`](https://facebook.github.io/react/docs/top-level-api.html#react.children) for dealing with the opaque data structure of `this.props.children`. You can use `React.Children.map` to iterate `this.props.children` without worrying if its data type is `undefined` or `object`. Check [official document](https://facebook.github.io/react/docs/top-level-api.html#react.children) for more methods `React.Children` offers.
 
 ## Demo06: PropTypes
 
 [demo](http://ruanyf.github.io/react-demos/demo06/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo06/index.html)
 
-Components have many specific attributes which are called `props` in React and can be of any type.
+Components in React have many specific attributes which are called `props` and can be of any type.
 
 Sometimes you need a way to validate these props. You don't want users have the freedom to input anything into your components.
 
@@ -221,7 +221,7 @@ class MyTitle extends React.Component {
 }
 ```
 
-The above component of `MyTitle` has a props of `title`. PropTypes tells React that the title is required and its value should be a string.
+The above component `MyTitle` has a prop of `title`. PropTypes tells React that the title is required and its value should be a string.
 
 Now we give `Title` a number value.
 
@@ -234,7 +234,7 @@ ReactDOM.render(
 );
 ```
 
-It means the props doesn't pass the validation, and the console will show you an error message.
+Here, the prop doesn't pass the validation, and the console will show you an error message:
 
 ```bash
 Warning: Failed propType: Invalid prop `title` of type `number` supplied to `MyTitle`, expected `string`.
