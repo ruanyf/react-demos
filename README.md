@@ -13,7 +13,7 @@ These demos are purposely written in a simple and clear style. You will find no 
 
 ## How to use
 
-First copy the repo into your disk.
+First, copy the repo into your disk.
 
 ```bash
 $ git clone git@github.com:ruanyf/react-demos.git
@@ -141,7 +141,7 @@ ReactDOM.render(
 
 You can use `this.props.[attribute]` to access the attributes of a component. Example: `this.props.name` of `<HelloMessage name="John" />` is John.
 
-Please remember the first letter of the component's name must be capitalized, otherwise React will throw an error. For instance, `HelloMessage` as a component's name is OK, but `helloMessage` is not allowed. And a React component should only have one top child node.
+Please remember the first letter of the component's name must be capitalized, otherwise, React will throw an error. For instance, `HelloMessage` as a component's name is OK, but `helloMessage` is not allowed. And a React component should only have one top child node.
 
 ```javascript
 // wrong
@@ -469,7 +469,7 @@ ReactDOM.render(
 
 This demo is inspired by Nat Pryce's article ["Higher Order React Components"](http://natpryce.com/articles/000814.html).
 
-If a React component's data is received asynchronously, we can use a Promise object as the component's property also, just as the following.
+If a React component's data is received asynchronously, we can also use a Promise object as the component's property, as follows.
 
 ```javascript
 ReactDOM.render(
