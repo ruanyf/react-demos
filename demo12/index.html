@@ -14,16 +14,22 @@
         constructor(props) {
           super(props)
           this.state = {
-            loading: true,
-            error: null,
-            data: null
+            loading : true,
+            error   : null,
+            data    : null
           };
         }
 
         componentDidMount() {
           this.props.promise.then(
-            value => this.setState({loading: false, data: value}),
-            error => this.setState({loading: false, error: error}));
+                  value => this.setState( {
+                    loading : false,
+                    data : value
+                  } ),
+                  error => this.setState( {
+                    loading : false,
+                    error : error
+                  } ) );
         }
 
         render() {

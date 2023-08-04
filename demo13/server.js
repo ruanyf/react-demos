@@ -6,11 +6,11 @@ var _app2 = _interopRequireDefault(_app);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var http = require('http'),
-    browserify = require('browserify'),
-    literalify = require('literalify'),
-    React = require('react'),
-    ReactDOMServer = require('react-dom/server');
+var http           = require( 'http' ),
+    browserify     = require( 'browserify' ),
+    literalify     = require( 'literalify' ),
+    React          = require( 'react' ),
+    ReactDOMServer = require( 'react-dom/server' );
 
 // export default
 
