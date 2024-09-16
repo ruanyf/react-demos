@@ -11,7 +11,7 @@ These demos are purposely written in a simple and clear style. You will find no 
 - [React Testing Demo](https://github.com/ruanyf/react-testing-demo)
 - [A boilerplate for React-Babel-Webpack project](https://github.com/ruanyf/react-babel-webpack-boilerplate)
 
-## How to use
+## How to use the project
 
 First, copy the repo into your disk.
 
